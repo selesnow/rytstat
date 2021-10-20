@@ -62,6 +62,7 @@ data <- setNames(data, headers$name)
 
 # data
 {
+  https://developers.google.com/youtube/v3/docs/search/list
 
   out <- request_build(
     method   = "GET",
