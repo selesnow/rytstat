@@ -1,0 +1,5 @@
+^ryoutube\.Rproj$
+^\.Rproj\.user$
+^test\.R$
+.*test.R
+^R/test\/.R$
