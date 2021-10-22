@@ -3,3 +3,4 @@
 ^test\.R$
 .*test.R
 ^R/test\/.R$
+^\.httr-oauth$
