@@ -62,7 +62,7 @@ ryt_auth <- function(
   # check default app
   app <- ryt_oauth_app() %||% ryt_default_ouath_app()
 
-  cred <- gargle::token_fetch(
+  cred <- token_fetch(
     scopes  = c('https://www.googleapis.com/auth/youtube',
                 'https://www.googleapis.com/auth/youtube.readonly',
                 'https://www.googleapis.com/auth/youtubepartner',
@@ -76,6 +76,7 @@ ryt_auth <- function(
     use_oob = use_oob,
     token   = token
   )
+
 
   if (!inherits(cred, "Token2.0")) {
     stop(
@@ -301,7 +302,7 @@ ryt_user <- function() {
 ryt_default_ouath_app <- function() {
 
   app <- httr::oauth_app(
-    'ryoutube main app',
+    'ryoutube_main_app',
     '555180316828-245bk1lh7pqd3gpmfk4o2qedenh0tot7.apps.googleusercontent.com',
     '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'
   )

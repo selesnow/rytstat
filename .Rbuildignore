@@ -4,3 +4,4 @@
 .*test.R
 ^R/test\/.R$
 ^\.httr-oauth$
+^LICENSE\.md$

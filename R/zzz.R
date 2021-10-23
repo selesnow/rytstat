@@ -1,19 +1,19 @@
 .onLoad <- function(libname, pkgname) {
 
   # auth object
-  .auth <<- gargle::init_AuthState(
-    package     = "rgoogleads",
-    auth_active = TRUE
+   .auth <<- gargle::init_AuthState(
+   package     = "ryoutube",
+   auth_active = TRUE
   )
 
   # auth object
   # this is to insure we get an instance of gargle's AuthState using the
   # current, locally installed version of gargle
-  assign(
-    ".auth",
-    gargle::init_AuthState(package = "ryoutube", auth_active = TRUE),
-    environment(.onLoad)
-  )
+  # assign(
+  #   ".auth",
+  #   gargle::init_AuthState(package = "ryoutube", auth_active = TRUE),
+  #   environment(.onLoad)
+  # )
 
   # where function
   utils::globalVariables("where")

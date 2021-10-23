@@ -1,16 +1,20 @@
 Package: ryoutube
-Title: What the Package Does (One Line, Title Case)
+Title: Work with 'YouTube API'
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-Imports: cli, dplyr, gargle, snakecase, stringr, tidyr, pbapply, httr, withr
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    c(person(given  = "Alexey",
+             family = "Seleznev",
+             role   = c("aut", "cre"),
+             email  = "selesnow@gmail.com",
+             comment = c(ORCID = "0000-0003-0410-7385")),
+      person(given = "Netpeak",
+             role = c("cph")))
+Description: Provide function for get data from 'YouTube Data API' 
+    <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' 
+    <https://developers.google.com/youtube/analytics/reference/> and 
+    'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
+Imports: cli, dplyr, gargle, snakecase, stringr, tidyr, pbapply, httr, withr, rlang
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

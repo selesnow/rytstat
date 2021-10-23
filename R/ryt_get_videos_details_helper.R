@@ -23,7 +23,7 @@ ryt_get_video_details_helper <- function(
       id = video_id,
       part = fields
     ),
-    token    = .auth$cred,
+    token    = ryt_token(),
     path     = 'youtube/v3/videos',
     base_url = 'https://www.googleapis.com/'
   )
@@ -37,10 +37,10 @@ ryt_get_video_details_helper <- function(
   resp <- response_process(ans)
 
   result <- tibble(items = resp$items) %>%
-            unnest_wider(.data$items)
+    unnest_wider(.data$items)
 
   nested_fields <- select(result, where(is.list)) %>%
-                   names()
+    names()
   nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 
   while ( length(nested_fields) > 0 ) {
@@ -60,7 +60,7 @@ ryt_get_video_details_helper <- function(
     }
 
     nested_fields <- select(result, where(is.list)) %>%
-                     names()
+      names()
 
     nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 
@@ -69,4 +69,3 @@ ryt_get_video_details_helper <- function(
   return(result)
 
 }
-

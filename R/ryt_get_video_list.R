@@ -23,7 +23,7 @@ ryt_get_video_list <- function() {
     out <- request_build(
       method   = "GET",
       params   = q_params,
-      token    = .auth$cred,
+      token    = ryt_token(),
       path     = 'youtube/v3/search',
       base_url = 'https://www.googleapis.com/'
     )
@@ -44,16 +44,16 @@ ryt_get_video_list <- function() {
 
   cli_alert_info('Parse result')
   result <- tibble(items = result) %>%
-            unnest_longer(items) %>%
-            unnest_wider(items) %>%
-            unnest_wider(id, names_sep = "_") %>%
-            unnest_wider(snippet) %>%
-            unnest_wider(thumbnails, names_sep = "_") %>%
-            unnest_wider(thumbnails_default, names_sep = "_") %>%
-            unnest_wider(thumbnails_medium, names_sep = "_") %>%
-            unnest_wider(thumbnails_high, names_sep = "_") %>%
-            unnest_wider(thumbnails_standard, names_sep = "_") %>%
-            unnest_wider(thumbnails_maxres , names_sep = "_") %>%
+            unnest_longer(.data$items) %>%
+            unnest_wider(.data$items) %>%
+            unnest_wider(.data$id, names_sep = "_") %>%
+            unnest_wider(.data$snippet) %>%
+            unnest_wider(.data$thumbnails, names_sep = "_") %>%
+            unnest_wider(.data$thumbnails_default, names_sep = "_") %>%
+            unnest_wider(.data$thumbnails_medium, names_sep = "_") %>%
+            unnest_wider(.data$thumbnails_high, names_sep = "_") %>%
+            unnest_wider(.data$thumbnails_standard, names_sep = "_") %>%
+            unnest_wider(.data$thumbnails_maxres , names_sep = "_") %>%
             rename_with(to_snake_case)
 
   cli_alert_success(str_glue('Success, loading {nrow(result)} rows.'))

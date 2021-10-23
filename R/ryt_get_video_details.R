@@ -26,6 +26,11 @@ ryt_get_video_details <- function(
   cl = NULL
 ) {
 
+  # split by 50 videos
+  x <- seq_along(video_id)
+  video_id <- split(video_id, ceiling(x/50))
+  video_id <- lapply(video_id, paste0, collapse = ',')
+
   res <- pblapply(
           video_id,
           ryt_get_video_details_helper,

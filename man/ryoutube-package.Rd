@@ -4,11 +4,19 @@
 \name{ryoutube-package}
 \alias{ryoutube}
 \alias{ryoutube-package}
-\title{ryoutube: What the Package Does (One Line, Title Case)}
+\title{ryoutube: Work with 'YouTube API'}
 \description{
-What the package does (one paragraph).
+Provide function for get data from 'YouTube Data API' 
+    <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' 
+    <https://developers.google.com/youtube/analytics/reference/> and 
+    'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Alexey Seleznev \email{selesnow@gmail.com} (\href{https://orcid.org/0000-0003-0410-7385}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Netpeak [copyright holder]
+}
 
 }

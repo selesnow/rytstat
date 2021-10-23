@@ -1,21 +1,28 @@
-library(gargle)
-library(httr)
-library(tidyr)
-library(dplyr)
-library(rlang)
-library(snakecase)
-library(cli)
-library(stringr)
 
 if (FALSE) {
+  library(gargle)
+  library(httr)
+  library(tidyr)
+  library(dplyr)
+  library(rlang)
+  library(snakecase)
+  library(cli)
+  library(stringr)
 
+  library(ryoutube)
 
-  ryt_auth(email = 'selesnow@gmail.com', cache = TRUE)
+  ryt_token(
 
+  )
+
+  ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
+  ryt_open_auth_cache_folder()
+  ryt_auth()
   videos <- ryt_get_video_list()
 
-  video_details <- ryt_get_video_details(videos$id_videoId[5:10])
+  video_details <- ryt_get_video_details(video_id = videos$id_video_id)
 
+  analytics_data <- ryt_get_analytics()
 
   app <- oauth_app(
     'ryoutube',
@@ -48,7 +55,6 @@ if (FALSE) {
                     dimensions = 'day',
                     filters = 'video==zJyDxd4JGg0',
                     metrics = 'views,likes'),
-    #path     = str_glue('{options("gads.api.version")}/customers/{customer_id}/googleAds:searchStream'),
     token    = cred,
     path = 'v2/reports',
     base_url = 'https://youtubeanalytics.googleapis.com/'
@@ -125,4 +131,5 @@ if (FALSE) {
   # документация
   # https://developers.google.com/youtube/analytics/reference/reports/query
   # https://developers.google.com/youtube/analytics/metrics
+  # https://developers.google.com/youtube/reporting
 }
