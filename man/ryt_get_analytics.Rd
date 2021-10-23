@@ -30,3 +30,41 @@ tibble with analytics data
 \description{
 The YouTube Analytics API enables you to generate custom reports containing YouTube Analytics data. The API supports reports for channels and for content owners.
 }
+\examples{
+\dontrun{
+# auth
+ryt_auth()
+
+# get list of your videos
+videos <- ryt_get_video_list()
+
+# function for loading video stat
+get_videos_stat <- function(video_id) {
+
+  data <- ryt_get_analytics(
+    metrics = c('views', 'likes', 'dislikes', 'comments', 'shares'),
+    filters = stringr::str_glue('video=={video_id}')
+  )
+
+  if ( nrow(data) > 0 ) {
+    data <- mutate(data, video_id = video_id)
+}
+}
+
+# load video stat
+video_stat <- purrr::map_df(videos$id_video_id, get_videos_stat)
+
+# join stat with video metadata
+video_stat <- left_join(video_stat,
+                        videos,
+                        by = c("video_id" = "id_video_id")) \%>\%
+              select(video_id,
+                     title,
+                     day,
+                     views,
+                     likes,
+                     dislikes,
+                     comments,
+                     shares)
+}
+}

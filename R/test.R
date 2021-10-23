@@ -22,7 +22,49 @@ if (FALSE) {
 
   video_details <- ryt_get_video_details(video_id = videos$id_video_id)
 
-  analytics_data <- ryt_get_analytics()
+  analytics_data <- ryt_get_analytics(filters = 'video==wtXVwOBo518')
+
+  # auth
+  ryt_auth()
+
+  # get list of your videos
+  videos <- ryt_get_video_list()
+
+  # function for loading video stat
+  get_videos_stat <- function(video_id) {
+
+    data <- ryt_get_analytics(
+      metrics = c('views', 'likes', 'dislikes', 'comments', 'shares'),
+      filters = str_glue('video=={video_id}')
+    )
+
+    if ( nrow(data) > 0 ) {
+      data <- mutate(data, video_id = video_id)
+    }
+  }
+
+  # load video stat
+  video_stat <- purrr::map_df(videos$id_video_id, get_videos_stat)
+
+  # join stat with video metadata
+  video_stat <- left_join(video_stat,
+                          videos,
+                          by = c("video_id" = "id_video_id")) %>%
+                select(video_id,
+                       title,
+                       day,
+                       views,
+                       likes,
+                       dislikes,
+                       comments,
+                       shares)
+
+  pblapply(videos$id_video_id[1:5],
+           function(x) ryt_get_analytics(filters = str_glue('video=={x}')))
+
+  temp <- lapply(videos$id_video_id[1:5],
+         function(x) ryt_get_analytics(filters = str_glue('video=={x}')))
+
 
   app <- oauth_app(
     'ryoutube',

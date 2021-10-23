@@ -8,6 +8,43 @@
 #'
 #' @return tibble with analytics data
 #' @export
+#' @examples
+#' \dontrun{
+#' # auth
+#' ryt_auth()
+#'
+#' # get list of your videos
+#' videos <- ryt_get_video_list()
+#'
+#' # function for loading video stat
+#' get_videos_stat <- function(video_id) {
+#'
+#'   data <- ryt_get_analytics(
+#'     metrics = c('views', 'likes', 'dislikes', 'comments', 'shares'),
+#'     filters = stringr::str_glue('video=={video_id}')
+#'   )
+#'
+#'   if ( nrow(data) > 0 ) {
+#'     data <- mutate(data, video_id = video_id)
+#' }
+#' }
+#'
+#' # load video stat
+#' video_stat <- purrr::map_df(videos$id_video_id, get_videos_stat)
+#'
+#' # join stat with video metadata
+#' video_stat <- left_join(video_stat,
+#'                         videos,
+#'                         by = c("video_id" = "id_video_id")) %>%
+#'               select(video_id,
+#'                      title,
+#'                      day,
+#'                      views,
+#'                      likes,
+#'                      dislikes,
+#'                      comments,
+#'                      shares)
+#' }
 ryt_get_analytics <- function(
   start_date = Sys.Date() - 14,
   end_date = Sys.Date(),
@@ -54,11 +91,17 @@ ryt_get_analytics <- function(
     }
   )
 
+  if ( nrow(data) == 0 ) {
+    cli_alert_warning('Empty answer')
+    return(tibble())
+  }
+
   headers <- tibble(response = resp$columnHeaders) %>%
              unnest_wider(.data$response)
 
   data <- set_names(data, headers$name)
 
+  cli_alert_success(str_glue('Success, loading {nrow(data)} rows.'))
   return(data)
 
 }

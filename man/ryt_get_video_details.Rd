@@ -15,7 +15,7 @@ ryt_get_video_details(
 \arguments{
 \item{video_id}{Video ID.}
 
-\item{fields}{Fields of data, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
+\item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
 
 \item{cl}{A cluster object created by \code{\link{makeCluster}}, or an integer to indicate number of child-processes (integer values are ignored on Windows) for parallel evaluations (see Details on performance).}
 }
