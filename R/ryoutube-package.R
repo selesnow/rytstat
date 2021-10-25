@@ -6,5 +6,6 @@
 #' @import pbapply
 #' @import snakecase
 #' @import withr
+#' @importFrom httr content_type content
 #' @importFrom rlang "%||%" set_names
 "_PACKAGE"

@@ -17,7 +17,7 @@ if (FALSE) {
 
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
   ryt_open_auth_cache_folder()
-  ryt_auth()
+  ryt_auth(email = 'selesnow@gmail.com')
   videos <- ryt_get_video_list()
 
   video_details <- ryt_get_video_details(video_id = videos$id_video_id)
@@ -58,6 +58,31 @@ if (FALSE) {
                        dislikes,
                        comments,
                        shares)
+
+  # auth
+  ryt_auth('me@gmail.com')
+
+  # get reporting data
+  ## create job
+  ryt_reports_create_job('channel_basic_a2')
+
+  ## get job list
+  jobs2 <- ryt_reports_get_job_list()
+
+  ## get job report list
+  reports <- ryt_reports_get_report_list(
+    job_id = jobs$id[1],
+    created_after = '2021-10-20T15:01:23.045678Z'
+  )
+
+  # get report data
+  data <- ryt_get_report(
+    download_url = reports$downloadUrl[1]
+  )
+
+  # delete job
+  ryt_reports_delete_job(jobs$id[1])
+
 
   pblapply(videos$id_video_id[1:5],
            function(x) ryt_get_analytics(filters = str_glue('video=={x}')))

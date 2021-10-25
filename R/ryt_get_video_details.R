@@ -7,7 +7,6 @@
 #' @return tibble with video details
 #' @export
 #'
-#' @examples
 ryt_get_video_details <- function(
   video_id,
   fields = c('contentDetails',
