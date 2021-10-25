@@ -118,7 +118,7 @@ data <- ryt_get_report(
 ryt_reports_delete_job(jobs$id[1])
 ```
 
-## Author
+## Автор
 Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net)
 <Br>Telegram Channel: [R4marketing](https://t.me/R4marketing)
 <Br>email: selesnow@gmail.com
