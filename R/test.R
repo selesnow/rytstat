@@ -15,6 +15,7 @@ if (FALSE) {
 
   )
 
+  ryt_auth
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
   ryt_open_auth_cache_folder()
   ryt_auth(email = 'selesnow@gmail.com')
