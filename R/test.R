@@ -15,7 +15,15 @@ if (FALSE) {
 
   )
 
-  ryt_auth
+  app <- oauth_app(
+    'my app',
+    key = '321452169616-jnrn2ja27503ijs2qs52rckk5ie2er3m.apps.googleusercontent.com',
+    secret = '9-fe5feYYQtQaarQv9xoL3B0'
+  )
+
+  ryt_auth_configure(app = app)
+
+
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
   ryt_open_auth_cache_folder()
   ryt_auth(email = 'selesnow@gmail.com')

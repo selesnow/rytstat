@@ -1,7 +1,9 @@
 
-# ryoutube - R пакет для работы с YouTube API
+# ryoutube - R пакет для работы с YouTube API <a href='https://selesnow.github.io/ryoutube/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ryoutube)](https://CRAN.R-project.org/package=ryoutube)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 Пакет `ryoutube` предназначен для работы с YouTube API, на данный момент поддерживает работу со следующими API интерфесами:
