@@ -6,6 +6,8 @@
 \alias{ryoutube-package}
 \title{ryoutube: Work with 'YouTube API'}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Provide function for get data from 'YouTube Data API' 
     <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' 
     <https://developers.google.com/youtube/analytics/reference/> and 
