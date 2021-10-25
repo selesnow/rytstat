@@ -18,11 +18,11 @@ ryt_get_analytics(
 
 \item{end_date}{The end date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.}
 
-\item{metrics}{Character vector of YouTube Analytics metrics, such as views or likes,dislikes. See the \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports or a list of the reports that you can retrieve and the metrics available in each report. The \href{https://developers.google.com/youtube/analytics/dimsmets/mets}{Metrics document} contains definitions for all of the metrics.}
+\item{metrics}{Character vector of YouTube Analytics metrics, such as views or likes,dislikes. See the \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports or a list of the reports that you can retrieve and the metrics available in each report. The \href{https://developers.google.com/youtube/analytics/metrics}{Metrics document} contains definitions for all of the metrics.}
 
-\item{dimensions}{Character vector of YouTube Analytics dimensions, such as video or ageGroup,gender. The \href{https://developers.google.com/youtube/analytics/dimsmets/dims}{Dimensions document} contains definitions for all of the dimensions.}
+\item{dimensions}{Character vector of YouTube Analytics dimensions, such as video or ageGroup,gender. The \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} contains definitions for all of the dimensions.}
 
-\item{filters}{Character vector of filters that should be applied when retrieving YouTube Analytics data. The \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports reports identifies the dimensions that can be used to filter each report, and the \href{https://developers.google.com/youtube/analytics/dimsmets/dims}{Dimensions document} defines those dimensions.}
+\item{filters}{Character vector of filters that should be applied when retrieving YouTube Analytics data. The \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports reports identifies the dimensions that can be used to filter each report, and the \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} defines those dimensions.}
 }
 \value{
 tibble with analytics data
