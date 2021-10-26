@@ -10,21 +10,19 @@ if (FALSE) {
   library(stringr)
 
   library(ryoutube)
+  library(httr)
 
-  ryt_token(
-
-  )
-
+  # OAuth клиент
   app <- oauth_app(
     'my app',
     key = '321452169616-jnrn2ja27503ijs2qs52rckk5ie2er3m.apps.googleusercontent.com',
     secret = '9-fe5feYYQtQaarQv9xoL3B0'
   )
-
+  # Конфигурация авторизации
   ryt_auth_configure(app = app)
-
-
+  # Авторизация
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
+
   ryt_open_auth_cache_folder()
   ryt_auth(email = 'selesnow@gmail.com')
   videos <- ryt_get_video_list()

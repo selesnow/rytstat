@@ -1,19 +1,13 @@
 .onLoad <- function(libname, pkgname) {
 
   # auth object
-   .auth <<- gargle::init_AuthState(
-   package     = "ryoutube",
-   auth_active = TRUE
-  )
-
-  # auth object
   # this is to insure we get an instance of gargle's AuthState using the
   # current, locally installed version of gargle
-  # assign(
-  #   ".auth",
-  #   gargle::init_AuthState(package = "ryoutube", auth_active = TRUE),
-  #   environment(.onLoad)
-  # )
+  assign(
+    ".auth",
+    gargle::init_AuthState(package = "rytstat", auth_active = TRUE),
+    environment(.onLoad)
+  )
 
   # where function
   utils::globalVariables("where")
@@ -41,17 +35,17 @@
 
 .onAttach <- function(lib, pkg,...){
 
-  packageStartupMessage(ryoutubeWelcomeMessage())
+  packageStartupMessage(rytstatWelcomeMessage())
 
 }
 
 
-ryoutubeWelcomeMessage <- function(){
+rytstatWelcomeMessage <- function(){
   # library(utils)
 
   paste0("\n",
          "---------------------\n",
-         "Welcome to ryoutube version ", utils::packageDescription("ryoutube")$Version, "\n",
+         "Welcome to rytstat version ", utils::packageDescription("rytstat")$Version, "\n",
          "\n",
          "Author:           Alexey Seleznev (Head of analytics dept at Netpeak).\n",
          "Telegram channel: https://t.me/R4marketing \n",
@@ -62,14 +56,14 @@ ryoutubeWelcomeMessage <- function(){
          "Facebook:         https://facebook.com/selesnown \n",
          "Linkedin:         https://www.linkedin.com/in/selesnow \n",
          "\n",
-         "Type ?ryoutube for the main documentation.\n",
-         "The github page is: https://github.com/selesnow/ryoutube/\n",
-         "Package site: https://selesnow.github.io/ryoutube/docs\n",
+         "Type ?rytstat for the main documentation.\n",
+         "The github page is: https://github.com/selesnow/rytstat/\n",
+         "Package site: https://selesnow.github.io/rytstat/docs\n",
          "\n",
-         "Suggestions and bug-reports can be submitted at: https://github.com/selesnow/ryoutube/issues\n",
+         "Suggestions and bug-reports can be submitted at: https://github.com/selesnow/rytstat/issues\n",
          "Or contact: <selesnow@gmail.com>\n",
          "\n",
-         "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(ryoutube))\n",
+         "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(rytstat))\n",
          "---------------------\n"
   )
 }

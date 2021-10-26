@@ -1,13 +1,13 @@
 
-# ryoutube - R пакет для работы с YouTube API <a href='https://selesnow.github.io/ryoutube/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# rytstat - R пакет для работы с YouTube API <a href='https://selesnow.github.io/rytstat/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/ryoutube)](https://CRAN.R-project.org/package=ryoutube)
+[![CRAN status](https://www.r-pkg.org/badges/version/rytstat)](https://CRAN.R-project.org/package=rytstat)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/selesnow/ryoutube/workflows/R-CMD-check/badge.svg)](https://github.com/selesnow/ryoutube/actions)
+[![R-CMD-check](https://github.com/selesnow/rytstat/workflows/R-CMD-check/badge.svg)](https://github.com/selesnow/rytstat/actions)
 <!-- badges: end -->
 
-Пакет `ryoutube` предназначен для работы с YouTube API, на данный момент поддерживает работу со следующими API интерфесами:
+Пакет `rytstat` предназначен для работы с YouTube API, на данный момент поддерживает работу со следующими API интерфесами:
 
 * [YouTube Reporting API](https://developers.google.com/youtube/reporting/v1/reports)
 * [YouTube Analytics API](https://developers.google.com/youtube/analytics/data_model)
@@ -15,16 +15,16 @@
 
 ## Установка
 
-Вы можете установить пакет `ryoutube` из [CRAN](https://CRAN.R-project.org):
+Вы можете установить пакет `rytstat` из [CRAN](https://CRAN.R-project.org):
 
 ``` r
-install.packages("ryoutube")
+install.packages("rytstat")
 ```
 
 или GitHub:
 
 ```r
-devtools::install_github('selesnow/ryoutube')
+devtools::install_github('selesnow/rytstat')
 ```
 
 ## Авторизация
@@ -36,7 +36,7 @@ devtools::install_github('selesnow/ryoutube')
 Далее для прохождения авторизации используйте приведённый ниже пример:
 
 ```r
-library(ryoutube)
+library(rytstat)
 library(httr)
 
 # авторизация
@@ -58,7 +58,7 @@ videos <- ryt_get_video_list()
 
 
 ``` r
-library(ryoutube)
+library(rytstat)
 
 # список видео
 videos <- ryt_get_video_list()
