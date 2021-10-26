@@ -9,7 +9,7 @@ if (FALSE) {
   library(cli)
   library(stringr)
 
-  library(ryoutube)
+  library()
   library(httr)
 
   # OAuth клиент
