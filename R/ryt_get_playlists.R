@@ -13,13 +13,11 @@ ryt_get_playlists <- function(
                'status')
   ) {
 
-    fields <- paste0(fields, collapse = ",")
-
     cli_alert_info('Compose params')
 
     q_params <- list(
       mine = TRUE,
-      part = fields,
+      part = paste0(fields, collapse = ","),
       maxResults = 5
     )
 
@@ -50,11 +48,11 @@ ryt_get_playlists <- function(
 
     cli_alert_info('Parse result')
     result <- tibble(items = result) %>%
-      unnest_longer(.data$items) %>%
-      unnest_wider(.data$items)
+                unnest_longer(.data$items) %>%
+                unnest_wider(.data$items)
 
     if ( 'snippet' %in%  fields )        result <- unnest_wider(result, .data$snippet)
-    if ( 'localizations' %in%  fields )  result <- unnest_wider(result, .data$localized)
+    if ( 'localizations' %in%  fields )  result <- unnest_wider(result, .data$localized, names_sep = "_")
     if ( 'status' %in%  fields )         result <- unnest_wider(result, .data$status)
     if ( 'contentDetails' %in%  fields ) result <- unnest_wider(result, .data$contentDetails)
     if ( 'player' %in%  fields )         result <- unnest_wider(result, .data$player)
