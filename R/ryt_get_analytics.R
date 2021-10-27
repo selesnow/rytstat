@@ -66,7 +66,7 @@ ryt_get_analytics <- function(
     params   = list(startDate = start_date,
                     endDate = end_date,
                     ids = 'channel==MINE',
-                    dimensions = 'day',
+                    dimensions = dimensions,
                     filters = filters,
                     metrics = metrics),
     token    = ryt_token(),

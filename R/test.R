@@ -9,7 +9,7 @@ if (FALSE) {
   library(cli)
   library(stringr)
 
-  library()
+  library(rytstat)
   library(httr)
 
   # OAuth клиент
@@ -24,12 +24,12 @@ if (FALSE) {
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
 
   ryt_open_auth_cache_folder()
-  ryt_auth(email = 'selesnow@gmail.com')
+  ryt_auth(email = 'selesnow@gmail.com', cache = FALSE)
   videos <- ryt_get_video_list()
 
   video_details <- ryt_get_video_details(video_id = videos$id_video_id)
 
-  analytics_data <- ryt_get_analytics(filters = 'video==wtXVwOBo518')
+  analytics_data <- ryt_get_analytics(filters = 'video==sCp2D6068es')
 
   # auth
   ryt_auth()
