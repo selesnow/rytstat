@@ -1,5 +1,5 @@
 
-# rytstat - R пакет для работы с YouTube API <a href='https://selesnow.github.io/rytstat/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# rytstat - R пакет для работы с YouTube API <a href='https://selesnow.github.io/rytstat/'><img src='https://github.com/selesnow/rytstat/raw/master/man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/rytstat)](https://CRAN.R-project.org/package=rytstat)
