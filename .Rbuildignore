@@ -6,3 +6,5 @@
 ^\.httr-oauth$
 ^LICENSE\.md$
 ^\.github$
+^logo.png$
+^privacy_policy\.md$

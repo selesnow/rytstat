@@ -10,7 +10,7 @@ ryt_has_token()
 Logical.
 }
 \description{
-Reports whether ryoutube has stored a token, ready for use in downstream
+Reports whether rytstat has stored a token, ready for use in downstream
 requests.
 }
 \seealso{

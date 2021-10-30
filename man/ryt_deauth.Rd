@@ -10,10 +10,10 @@ ryt_deauth()
 only suspend authorization
 }
 \description{
-Put ryoutube into a de-authorized state. Instead of sending a token,
-ryoutube will send an API key. This can be used to access public
+Put rytstat into a de-authorized state. Instead of sending a token,
+rytstat will send an API key. This can be used to access public
 resources for which no Google sign-in is required. This is handy for using
-ryoutube in a non-interactive setting to make requests that do not
+rytstat in a non-interactive setting to make requests that do not
 require a token. It will prevent the attempt to obtain a token
 interactively in the browser. The user can configure their own API key
 via \code{\link[=ryt_auth_configure]{ryt_auth_configure()}} and retrieve that key via

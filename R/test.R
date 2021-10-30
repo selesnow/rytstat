@@ -22,7 +22,7 @@ if (FALSE) {
   ryt_auth_configure(app = app)
   # Авторизация
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
-
+  channel <- ryt_get_channels()
   ryt_open_auth_cache_folder()
   ryt_auth(email = 'selesnow@gmail.com', cache = FALSE)
   videos <- ryt_get_video_list()
@@ -32,7 +32,7 @@ if (FALSE) {
   analytics_data <- ryt_get_analytics(filters = 'video==sCp2D6068es')
 
   # auth
-  ryt_auth()
+  ryt_auth('selesnow@gmail.com')
 
   # get list of your videos
   videos <- ryt_get_video_list()

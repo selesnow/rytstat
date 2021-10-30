@@ -42,7 +42,7 @@ configuration than \code{\link[=ryt_auth]{ryt_auth()}} does. \code{ryt_auth_conf
 lets the user specify their own:
 \itemize{
 \item OAuth app, which is used when obtaining a user token.
-\item API key. If ryoutube is de-authorized via \code{\link[=ryt_deauth]{ryt_deauth()}}, all
+\item API key. If rytstat is de-authorized via \code{\link[=ryt_deauth]{ryt_deauth()}}, all
 requests are sent with an API key in lieu of a token.
 See the vignette
 \href{https://gargle.r-lib.org/articles/get-api-credentials.html}{How to get your own API credentials}

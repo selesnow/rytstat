@@ -27,11 +27,11 @@ ryt_auth(
 \link[httr:Token-class]{Token2.0}
 }
 \description{
-Authorize ryoutube to view and manage your YouTube Account. This function is a
+Authorize rytstat to view and manage your YouTube Account. This function is a
 wrapper around \code{\link[gargle:token_fetch]{gargle::token_fetch()}}.
 
 By default, you are directed to a web browser, asked to sign in to your
-Google account, and to grant ryoutube permission to operate on your
+Google account, and to grant rytstat permission to operate on your
 behalf with YouTube. By default, with your permission, these user
 credentials are cached in a folder below your home directory, from where
 they can be automatically refreshed, as necessary. Storage at the user
@@ -53,7 +53,7 @@ However, when necessary, this function allows the user to explicitly:
 \itemize{
 \item Declare which Google identity to use, via an email address. If there
 are multiple cached tokens, this can clarify which one to use. It can
-also force ryoutube to switch from one identity to another. If
+also force rytstat to switch from one identity to another. If
 there's no cached token for the email, this triggers a return to the
 browser to choose the identity and give consent. You can specify just
 the domain by using a glob pattern. This means that a script
