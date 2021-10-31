@@ -19,6 +19,7 @@ The `rytstat` package for authorization uses the [gargle](https://gargle.r-lib.o
 
 For loading data from your YouTube channel `rytstat` needs next scopes:
 
+* See, edit, and permanently delete your YouTube videos, ratings, comments and captions
 * View monetary and non-monetary YouTube Analytics reports for your YouTube content
 * View your YouTube account
 * View and manage your assets and associated content on YouTube
