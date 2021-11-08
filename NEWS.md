@@ -17,6 +17,10 @@
     * `ryt_reports_get_report_list()` -> `ryt_get_report_list()`
     * `ryt_reports_delete_job()`      -> `ryt_delete_job()`
     * `ryt_get_video_list()`          -> `ryt_get_videos()`
+    
+## Документация
+* В документацию всех функций добавлены примеры кода. 
+* Создан официальный сайт пакета `rytstat` - https://selesnow.github.io/rytstat/docs
 
 ## Прочее
 * Начиная с версии 0.2.0 пакет требует разрешение https://www.googleapis.com/auth/youtube.force-ssl, которое позволяет rytstat просматривать комментарии.
