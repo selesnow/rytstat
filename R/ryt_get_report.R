@@ -52,7 +52,7 @@ ryt_get_report_types <- function(){
 #' @family reporting api functions
 #' @rdname reporting_api
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reference/rest/v1/jobs/create}{Reporting API Documentation: Method jobs.create}
-ryt_reports_create_job <- function(
+ryt_create_job <- function(
   report_type = c('channel_annotations_a1',
                   'channel_basic_a2',
                   'channel_cards_a1',
@@ -105,12 +105,12 @@ ryt_reports_create_job <- function(
 
 #' Lists reporting jobs that have been scheduled for a channel or content owner.
 #' @description Each resource in the response contains an id property, which specifies the ID that YouTube uses to uniquely identify the job. You need that ID to retrieve the list of reports that have been generated for the job or to delete the job.
-#' @return ryt_reports_get_job_list: tibble with jobs metadata
+#' @return ryt_get_job_list: tibble with jobs metadata
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reference/rest/v1/jobs/list}{Reporting API Documentation: Method jobs.list}
 #' @export
 #' @rdname reporting_api
 #' @family reporting api functions
-ryt_reports_get_job_list <- function() {
+ryt_get_job_list <- function() {
 
   q_params <- list()
   result   <- list()
@@ -156,12 +156,12 @@ ryt_reports_get_job_list <- function() {
 #' @param start_time_at_or_after This parameter indicates that the API response should only contain reports if the earliest data in the report is on or after the specified date. Whereas the createdAfter parameter value pertains to the time the report was created, this date pertains to the data in the report. The value is a timestamp in RFC3339 UTC "Zulu" format, accurate to microseconds. Example: \code{"2015-10-02T15:01:23.045678Z"}.
 #' @param start_time_before This parameter indicates that the API response should only contain reports if the earliest data in the report is before the specified date. Whereas the createdAfter parameter value pertains to the time the report was created, this date pertains to the data in the report. The value is a timestamp in RFC3339 UTC "Zulu" format, accurate to microseconds. Example: \code{"2015-10-02T15:01:23.045678Z"}.
 #'
-#' @return ryt_reports_get_report_list: tibble with reports metadata
+#' @return ryt_get_report_list: tibble with reports metadata
 #' @export
 #' @family reporting api functions
 #' @rdname reporting_api
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reference/rest/v1/jobs.reports/list}{Reporting API Documentation: Method jobs.reports.list }
-ryt_reports_get_report_list <- function(
+ryt_get_report_list <- function(
   job_id,
   created_after = NULL,
   start_time_at_or_after = NULL,
@@ -207,7 +207,7 @@ ryt_reports_get_report_list <- function(
 
 #' Load report data
 #'
-#' @param download_url download URL, you can get it by \code{\link{ryt_reports_get_report_list}} or \code{\link{ryt_get_report_metadata}}
+#' @param download_url download URL, you can get it by \code{\link{ryt_get_report_list}} or \code{\link{ryt_get_report_metadata}}
 #'
 #' @return ryt_get_report: tibble with report data
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reports}{Reporting API Documentation: Data Model}
@@ -224,10 +224,10 @@ ryt_reports_get_report_list <- function(
 #'  ryt_reports_create_job('channel_basic_a2')
 #'
 #'  ## get job list
-#'  jobs <- ryt_reports_get_job_list()
+#'  jobs <- ryt_get_job_list()
 #'
 #'  ## get job report list
-#'  reports <- ryt_reports_get_report_list(
+#'  reports <- ryt_get_report_list(
 #'    job_id = jobs$id[1],
 #'    created_after = '2021-10-20T15:01:23.045678Z'
 #'  )
@@ -265,8 +265,8 @@ ryt_get_report <- function(download_url){
 
 #' Retrieves the metadata for a specific report.
 #'
-#' @param job_id job_id The ID that YouTube uses to uniquely identify the job for which reports are being listed. Use \code{\link{ryt_reports_get_job_list}}.
-#' @param report_id The ID that YouTube uses to uniquely identify the report that is being retrieved. Use \code{\link{ryt_reports_get_report_list}}
+#' @param job_id job_id The ID that YouTube uses to uniquely identify the job for which reports are being listed. Use \code{\link{ryt_get_job_list}}.
+#' @param report_id The ID that YouTube uses to uniquely identify the report that is being retrieved. Use \code{\link{ryt_get_report_list}}
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reference/rest/v1/jobs.reports/get}{Reporting API Documentation: Method jobs.reports.get}
 #' @return ryt_get_report_metadata: list with report metadata
 #' @export
@@ -297,14 +297,14 @@ ryt_get_report_metadata <- function(
 
 #' Deletes a reporting job.
 #'
-#' @param job_id The ID that YouTube uses to uniquely identify the job that is being deleted. Use \code{\link{ryt_reports_get_job_list}}.
+#' @param job_id The ID that YouTube uses to uniquely identify the job that is being deleted. Use \code{\link{ryt_get_job_list}}.
 #'
 #' @return ryt_reports_delete_job: No return value, called for side effects
 #' @seealso \href{https://developers.google.com/youtube/reporting/v1/reference/rest/v1/jobs/delete}{Reporting API Documentation: Method jobs.delete}
 #' @export
 #' @family reporting api functions
 #' @rdname reporting_api
-ryt_reports_delete_job <- function(
+ryt_delete_job <- function(
   job_id
 ){
 

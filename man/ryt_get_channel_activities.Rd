@@ -15,3 +15,10 @@ tibble with channel activies
 \description{
 Returns a list of channel activity events
 }
+\examples{
+\dontrun{
+
+channel_activities <- ryt_get_channel_activities()
+
+}
+}

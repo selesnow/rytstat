@@ -13,7 +13,7 @@ ryt_get_video_details(
 )
 }
 \arguments{
-\item{video_id}{Video ID.}
+\item{video_id}{Video ID, see \code{\link{ryt_get_videos}}.}
 
 \item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
 
@@ -24,4 +24,16 @@ tibble with video details
 }
 \description{
 Get detail data of your videos on 'YouTube'
+}
+\examples{
+\dontrun{
+# get all videos
+videos <- ryt_get_videos()
+
+# get videos metadata
+videos_details <- ryt_get_video_details(
+    video_id = videos$id_video_id
+)
+
+}
 }

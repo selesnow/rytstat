@@ -5,6 +5,13 @@
 #'
 #' @return tibble with channel activies
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#'
+#' channel_activities <- ryt_get_channel_activities()
+#'
+#' }
 ryt_get_channel_activities <- function(
   fields = c('contentDetails',
              'id',

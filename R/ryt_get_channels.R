@@ -4,6 +4,12 @@
 #'
 #' @return tibble with channel metadata
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' channels <- ryt_get_channels()
+#'
+#' }
 ryt_get_channels <- function(
   fields = c('contentDetails',
              'id',

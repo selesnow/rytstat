@@ -17,3 +17,9 @@ tibble with channel metadata
 \description{
 Get channel info from 'YouTube API'
 }
+\examples{
+\dontrun{
+channels <- ryt_get_channels()
+
+}
+}

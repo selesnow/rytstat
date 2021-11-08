@@ -23,6 +23,15 @@ tibble with comments
 \description{
 Returns a list of comment threads of video or channel
 }
+\examples{
+\dontrun{
+# all comments
+comments <- ryt_get_comments()
+
+# videos comments
+video_comments <- ryt_get_comments(video_id = 'fW7gGS^G78')
+}
+}
 \seealso{
 \href{https://developers.google.com/youtube/v3/docs/commentThreads/list}{Reporting API Documentation}.
 }
