@@ -8,10 +8,15 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Provide function for get data from 'YouTube Data API' 
-    <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' 
-    <https://developers.google.com/youtube/analytics/reference/> and 
-    'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
+Provide function for get data from 'YouTube Data API' <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' <https://developers.google.com/youtube/analytics/reference/> and 'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://selesnow.github.io/rytstat/docs}
+  \item Report bugs at \url{https://github.com/selesnow/rytstat/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Alexey Seleznev \email{selesnow@gmail.com} (\href{https://orcid.org/0000-0003-0410-7385}{ORCID})
