@@ -69,7 +69,7 @@ ryt_auth('me@gmail.com')
 
 ## Install
 
-You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnpw/rytstat):
+You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnow/rytstat):
 
 ``` r
 install.packages("rytstat")

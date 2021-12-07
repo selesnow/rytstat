@@ -13,7 +13,7 @@ Provide function for get data from 'YouTube Data API' <https://developers.google
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://selesnow.github.io/rytstat/docs}
+  \item \url{https://selesnow.github.io/rytstat/docs/}
   \item Report bugs at \url{https://github.com/selesnow/rytstat/issues}
 }
 
