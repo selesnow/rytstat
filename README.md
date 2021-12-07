@@ -1,5 +1,5 @@
 
-# rytstat - R пакет для работы с YouTube API <a href='https://selesnow.github.io/rytstat/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# rytstat - R interface for work with YouTube APIs <a href='https://selesnow.github.io/rytstat/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/rytstat)](https://CRAN.R-project.org/package=rytstat)
@@ -7,11 +7,13 @@
 [![R-CMD-check](https://github.com/selesnow/rytstat/workflows/R-CMD-check/badge.svg)](https://github.com/selesnow/rytstat/actions)
 <!-- badges: end -->
 
-Пакет `rytstat` предназначен для работы с YouTube API, на данный момент поддерживает работу со следующими API интерфесами:
+`rytstat` package is an R interface for working with the following YouTube APIs:
 
 * [YouTube Reporting API](https://developers.google.com/youtube/reporting/v1/reports)
 * [YouTube Analytics API](https://developers.google.com/youtube/analytics/data_model)
 * [YouTube Data API](https://developers.google.com/youtube/v3/getting-started)
+
+That is, the `rytstat` allows you to request any data available in the YouTube Creator Studio for further analysis and visualization using the R language.
 
 ## Privacy Policy
 
@@ -65,9 +67,9 @@ ryt_auth_configure(path = 'D:/ga_auth/app.json')
 ryt_auth('me@gmail.com')
 ```
 
-## Установка
+## Install
 
-Вы можете установить пакет `rytstat` из [CRAN](https://CRAN.R-project.org):
+You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnpw/rytstat):
 
 ``` r
 install.packages("rytstat")
@@ -79,73 +81,54 @@ install.packages("rytstat")
 devtools::install_github('selesnow/rytstat')
 ```
 
-## Авторизация
-
-Для работы с API YouTube вам необходимо создать OAuth клиент в [Google Console](https://console.cloud.google.com/), и включить все связанные с YouTube API.
-
-![](http://img.netpeak.ua/alsey/53WIMY.png)
-
-Далее для прохождения авторизации используйте приведённый ниже пример:
+## Examples
+### Auth
 
 ```r
 library(rytstat)
 library(httr)
 
-# авторизация
+# auth app
 app <- oauth_app(
     appname = 'my app',
-    key = 'ключ вашего приложения', 
-    secret = 'секрет вашего приложения')
+    key = 'app id', 
+    secret = 'app secret')
 
 ryt_auth_configure(app = app)
 
 ryt_auth(email = 'me@gmail.com')
 
-# запрос списка видео
+# load videos
 videos <- ryt_get_video_list()
 
 ```
 
-## Пример запроса данных из YouTube Analytics API
+## Using YouTube Analytics API
 
 
 ``` r
 library(rytstat)
 
-# список видео
+# get list of videos
 videos <- ryt_get_video_list()
 
-# функция для запроса статистики по конкретному видео
-get_videos_stat <- function(video_id) {
-
-data <- ryt_get_analytics(
-  metrics = c('views', 'likes', 'dislikes', 'comments', 'shares'),
-  filters = str_glue('video=={video_id}')
+# get statistics by day and videos
+# you can specify no more than 500 videos at a time
+video_stat <- ryt_get_analytics(
+  start_date = '2021-01-01', 
+  end_date = '2021-09-01',
+  dimensions = c('day', 'video'),
+  metrics = c('views', 
+              'likes', 
+              'dislikes', 
+              'comments', 
+              'shares'),
+  filters = str_glue('video=={str_c(head(videos$id_video_id, 500), collapse=",")}')
 )
 
- if ( nrow(data) > 0 ) {
-      data <- mutate(data, video_id = video_id)
-    }
-}
-
-# применяем функцию к каждому видео
-video_stat <- purrr::map_df(videos$id_video_id, get_videos_stat)
-
-# объединяем статистику с данными о видео
-video_stat <- left_join(video_stat,
-                        videos,
-                        by = c("video_id" = "id_video_id")) %>%
-              select(video_id,
-                     title,
-                     day,
-                     views,
-                     likes,
-                     dislikes,
-                     comments,
-                     shares)
 ```
 
-## Пример запроса данных из YouTube Reporting API
+## Using YouTube Reporting API
 
 ```r
 # auth
@@ -156,10 +139,10 @@ ryt_auth('me@gmail.com')
 ryt_reports_create_job('channel_basic_a2')
 
 ## get job list
-jobs2 <- ryt_reports_get_job_list()
+jobs2 <- ryt_get_job_list()
 
 ## get job report list
-reports <- ryt_reports_get_report_list(
+reports <- ryt_get_report_list(
   job_id = jobs$id[1],
   created_after = '2021-10-20T15:01:23.045678Z'
 )
@@ -170,12 +153,13 @@ data <- ryt_get_report(
 )
 
 # delete job
-ryt_reports_delete_job(jobs$id[1])
+ryt_delete_job(jobs$id[1])
 ```
 
-## Автор
+## Author
 Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net)
 <Br>Telegram Channel: @R4marketing
 <Br>email: selesnow@gmail.com
 <Br>facebook: [facebook.com/selesnow](https://www.facebook.com/selesnow)
 <Br>blog: [alexeyseleznev.wordpress.com](https://alexeyseleznev.wordpress.com/)
+

@@ -24,18 +24,20 @@ if (FALSE) {
   ryt_auth(email = 'r4marketing-6832@pages.plusgoogle.com')
   channel <- ryt_get_channels()
   ryt_open_auth_cache_folder()
-  ryt_auth(email = 'selesnow@gmail.com', cache = FALSE)
-  videos <- ryt_get_video_list()
+  ryt_auth(email = 'selesnow@gmail.com')
+  videos <- ryt_get_videos()
 
   video_details <- ryt_get_video_details(video_id = videos$id_video_id)
 
   analytics_data <- ryt_get_analytics(filters = 'video==sCp2D6068es')
 
+  pl <- ryt_get_playlists()
+
   # auth
   ryt_auth('selesnow@gmail.com')
 
   # get list of your videos
-  videos <- ryt_get_video_list()
+  videos <- ryt_get_videos()
 
   # function for loading video stat
   get_videos_stat <- function(video_id) {
@@ -74,7 +76,7 @@ if (FALSE) {
   ryt_reports_create_job('channel_basic_a2')
 
   ## get job list
-  jobs2 <- ryt_reports_get_job_list()
+  jobs2 <- ryt_get_job_list()
 
   ## get job report list
   reports <- ryt_reports_get_report_list(

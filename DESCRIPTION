@@ -14,6 +14,8 @@ Description: Provide function for get data from 'YouTube Data API'
     <https://developers.google.com/youtube/analytics/reference/> and 
     'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
 Imports: cli, dplyr, gargle, snakecase, stringr, tidyr, pbapply, httr, withr, rlang
+URL: https://selesnow.github.io/rytstat/docs
+BugReports: https://github.com/selesnow/rytstat/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

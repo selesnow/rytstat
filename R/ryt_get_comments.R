@@ -9,6 +9,13 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # all comments
+#' comments <- ryt_get_comments()
+#'
+#' # videos comments
+#' video_comments <- ryt_get_comments(video_id = 'fW7gGS^G78')
+#' }
 ryt_get_comments <- function(
   video_id = NULL,
   channel_id = NULL,

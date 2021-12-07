@@ -2,17 +2,17 @@
 % Please edit documentation in R/ryt_get_report.R
 \name{ryt_get_report_types}
 \alias{ryt_get_report_types}
-\alias{ryt_reports_create_job}
-\alias{ryt_reports_get_job_list}
-\alias{ryt_reports_get_report_list}
+\alias{ryt_create_job}
+\alias{ryt_get_job_list}
+\alias{ryt_get_report_list}
 \alias{ryt_get_report}
 \alias{ryt_get_report_metadata}
-\alias{ryt_reports_delete_job}
+\alias{ryt_delete_job}
 \title{Returns a list of report types that the channel or content owner can retrieve. Each item in the list contains an id property, which identifies the report's ID, and you need this value to schedule a reporting job.}
 \usage{
 ryt_get_report_types()
 
-ryt_reports_create_job(
+ryt_create_job(
   report_type = c("channel_annotations_a1", "channel_basic_a2", "channel_cards_a1",
     "channel_combined_a2", "channel_demographics_a1", "channel_device_os_a2",
     "channel_end_screens_a1", "channel_playback_location_a2", "channel_province_a2",
@@ -22,9 +22,9 @@ ryt_reports_create_job(
     "playlist_province_a1", "playlist_traffic_source_a1")
 )
 
-ryt_reports_get_job_list()
+ryt_get_job_list()
 
-ryt_reports_get_report_list(
+ryt_get_report_list(
   job_id,
   created_after = NULL,
   start_time_at_or_after = NULL,
@@ -35,12 +35,12 @@ ryt_get_report(download_url)
 
 ryt_get_report_metadata(job_id, report_id)
 
-ryt_reports_delete_job(job_id)
+ryt_delete_job(job_id)
 }
 \arguments{
 \item{report_type}{The type of report that the job creates. The property value corresponds to the id of a reportType as retrieved from the \code{\link{ryt_get_report_types}} function.}
 
-\item{job_id}{The ID that YouTube uses to uniquely identify the job that is being deleted. Use \code{\link{ryt_reports_get_job_list}}.}
+\item{job_id}{The ID that YouTube uses to uniquely identify the job that is being deleted. Use \code{\link{ryt_get_job_list}}.}
 
 \item{created_after}{If specified, this parameter indicates that the API response should only contain reports created after the specified date and time, including new reports with backfilled data. Note that the value pertains to the time that the report is created and not the dates associated with the returned data. The value is a timestamp in RFC3339 UTC "Zulu" format, accurate to microseconds. Example: \code{"2015-10-02T15:01:23.045678Z"}.}
 
@@ -48,18 +48,18 @@ ryt_reports_delete_job(job_id)
 
 \item{start_time_before}{This parameter indicates that the API response should only contain reports if the earliest data in the report is before the specified date. Whereas the createdAfter parameter value pertains to the time the report was created, this date pertains to the data in the report. The value is a timestamp in RFC3339 UTC "Zulu" format, accurate to microseconds. Example: \code{"2015-10-02T15:01:23.045678Z"}.}
 
-\item{download_url}{download URL, you can get it by \code{\link{ryt_reports_get_report_list}} or \code{\link{ryt_get_report_metadata}}}
+\item{download_url}{download URL, you can get it by \code{\link{ryt_get_report_list}} or \code{\link{ryt_get_report_metadata}}}
 
-\item{report_id}{The ID that YouTube uses to uniquely identify the report that is being retrieved. Use \code{\link{ryt_reports_get_report_list}}}
+\item{report_id}{The ID that YouTube uses to uniquely identify the report that is being retrieved. Use \code{\link{ryt_get_report_list}}}
 }
 \value{
 ryt_get_report_types: tibble with report types
 
 ryt_reports_create_job: No return value, called for side effects
 
-ryt_reports_get_job_list: tibble with jobs metadata
+ryt_get_job_list: tibble with jobs metadata
 
-ryt_reports_get_report_list: tibble with reports metadata
+ryt_get_report_list: tibble with reports metadata
 
 ryt_get_report: tibble with report data
 
@@ -82,10 +82,10 @@ Each resource in the response contains an id property, which specifies the ID th
  ryt_reports_create_job('channel_basic_a2')
 
  ## get job list
- jobs <- ryt_reports_get_job_list()
+ jobs <- ryt_get_job_list()
 
  ## get job report list
- reports <- ryt_reports_get_report_list(
+ reports <- ryt_get_report_list(
    job_id = jobs$id[1],
    created_after = '2021-10-20T15:01:23.045678Z'
  )

@@ -14,7 +14,7 @@
 #' ryt_auth()
 #'
 #' # get list of your videos
-#' videos <- ryt_get_video_list()
+#' videos <- ryt_get_videos()
 #'
 #' # function for loading video stat
 #' get_videos_stat <- function(video_id) {

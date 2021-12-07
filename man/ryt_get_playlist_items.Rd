@@ -11,7 +11,7 @@ ryt_get_playlist_items(
 )
 }
 \arguments{
-\item{playlist_id}{Playlist ID.}
+\item{playlist_id}{Playlist ID, see \code{\link{ryt_get_playlists}}.}
 
 \item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/playlistItems/list}{API documentation}.}
 

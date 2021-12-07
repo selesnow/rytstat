@@ -3,7 +3,7 @@
 #' @return tibble with video list
 #' @export
 #'
-ryt_get_video_list <- function() {
+ryt_get_videos <- function() {
 
   cli_alert_info('Compose params')
 

@@ -1,12 +1,22 @@
 #' Get detail data of your videos on 'YouTube'
 #'
-#' @param video_id Video ID.
+#' @param video_id Video ID, see \code{\link{ryt_get_videos}}.
 #' @param fields Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.
 #' @param cl A cluster object created by \code{\link{makeCluster}}, or an integer to indicate number of child-processes (integer values are ignored on Windows) for parallel evaluations (see Details on performance).
 #'
 #' @return tibble with video details
 #' @export
+#' @examples
+#' \dontrun{
+#' # get all videos
+#' videos <- ryt_get_videos()
 #'
+#' # get videos metadata
+#' videos_details <- ryt_get_video_details(
+#'     video_id = videos$id_video_id
+#' )
+#'
+#' }
 ryt_get_video_details <- function(
   video_id,
   fields = c('contentDetails',

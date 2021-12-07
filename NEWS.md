@@ -10,6 +10,18 @@
 ## Исправления ошибок
 * Исправлено поведение функции `ryt_get_analytics()`, ранее нельзя было изменить параметр `dimensions`, он всегда при запросе был равен 'day'.
 
+## Названия функций
+* Следующие функции были переименованы с целью сокращения их названий:
+    * `ryt_reports_create_job()`      -> `ryt_create_job()`
+    * `ryt_reports_get_job_list()`    -> `ryt_get_job_list()`
+    * `ryt_reports_get_report_list()` -> `ryt_get_report_list()`
+    * `ryt_reports_delete_job()`      -> `ryt_delete_job()`
+    * `ryt_get_video_list()`          -> `ryt_get_videos()`
+    
+## Документация
+* В документацию всех функций добавлены примеры кода. 
+* Создан официальный сайт пакета `rytstat` - https://selesnow.github.io/rytstat/docs
+
 ## Прочее
 * Начиная с версии 0.2.0 пакет требует разрешение https://www.googleapis.com/auth/youtube.force-ssl, которое позволяет rytstat просматривать комментарии.
 
