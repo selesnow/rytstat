@@ -1,0 +1,56 @@
+url: ~
+template:
+  bootstrap: 5
+  params:
+    ganalytics: UA-114798296-1
+  opengraph:
+    image:
+      src: man/figures/logo.png
+      alt: "Loading data from YouTube API"
+
+reference:
+  - title: Main page
+    desc: >
+      rytstat documentation main page
+    contents:
+      - rytstat-package
+  - title: Authorization
+    desc: >
+      Managing authorization process
+    contents:
+      - ryt_auth_configure
+      - ryt_auth
+      - ryt_api_key
+      - ryt_oauth_app
+      - ryt_auth_cache_path
+      - ryt_deauth
+      - ryt_has_token
+      - ryt_token
+      - ryt_user
+      - ryt_open_auth_cache_folder
+  - title: YouTube Data API
+    desc: >
+      Work with YouTube Data API <https://developers.google.com/youtube/v3>
+    contents:
+      - ryt_get_channels
+      - ryt_get_channel_activities
+      - ryt_get_videos
+      - ryt_get_video_details
+      - ryt_get_playlists
+      - ryt_get_comments
+  - title: YouTube Analytics API
+    desc: >
+      Work with YouTube Analytics API <https://developers.google.com/youtube/analytics/data_model>
+    contents:
+      - ryt_get_analytics
+  - title: YouTube Reporting API
+    desc: >
+      Work with YouTube Reporting API <https://developers.google.com/youtube/reporting/v1/reports>
+    contents:
+      - ryt_get_report_types
+      - ryt_create_job
+      - ryt_get_job_list
+      - ryt_get_report_list
+      - ryt_get_report
+      - ryt_get_report_metadata
+      - ryt_delete_job

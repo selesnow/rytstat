@@ -8,3 +8,6 @@
 ^\.github$
 ^logo.png$
 ^privacy_policy\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

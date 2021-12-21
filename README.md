@@ -2,6 +2,9 @@
 # rytstat - R interface for work with YouTube APIs <a href='https://selesnow.github.io/rytstat/'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
+[![](https://cranlogs.r-pkg.org/badges/grand-total/rytstat)](https://cran.r-project.org/package=rytstat)
+[![](https://cranlogs.r-pkg.org/badges/rytstat?color=lightgrey)](https://cran.r-project.org/package=rytstat)
+[![](https://cranlogs.r-pkg.org/badges/last-week/rytstat?color=lightgrey)](https://cran.r-project.org/package=rytstat)
 [![CRAN status](https://www.r-pkg.org/badges/version/rytstat)](https://CRAN.R-project.org/package=rytstat)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/selesnow/rytstat/workflows/R-CMD-check/badge.svg)](https://github.com/selesnow/rytstat/actions)
@@ -69,7 +72,7 @@ ryt_auth('me@gmail.com')
 
 ## Install
 
-You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnow/rytstat):
+You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnpw/rytstat):
 
 ``` r
 install.packages("rytstat")
@@ -158,7 +161,8 @@ ryt_delete_job(jobs$id[1])
 
 ## Author
 Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net)
-<Br>Telegram Channel: @R4marketing
+<Br>Telegram Channel: [R4marketing](http://t.me/R4marketing)
+<Br>YouTube Channel: [R4marketing](https://www.youtube.com/R4marketing/?sub_confirmation=1)
 <Br>email: selesnow@gmail.com
 <Br>facebook: [facebook.com/selesnow](https://www.facebook.com/selesnow)
 <Br>blog: [alexeyseleznev.wordpress.com](https://alexeyseleznev.wordpress.com/)
