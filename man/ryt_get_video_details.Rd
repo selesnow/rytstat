@@ -99,6 +99,12 @@ For get more information about videos parts and fields go \href{this link}{https
 \item statistics/dislikeCount - The number of users who have indicated that they disliked the video.
 \item statistics/commentCount - The number of comments for the video.
 }
+\item player - The player object contains information that you would use to play the video in an embedded player.
+\itemize{
+\item player/embedHtml - An <iframe> tag that embeds a player that plays the video.
+\item player/embedHeight - The height of the embedded player returned in the player.embedHtml property.
+\item player/embedWidth - The width of the embedded player returned in the player.embedHtml property.
+}
 }
 }
 \examples{
