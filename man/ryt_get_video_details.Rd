@@ -6,14 +6,17 @@
 \usage{
 ryt_get_video_details(
   video_id,
-  fields = c("contentDetails", "fileDetails", "id", "liveStreamingDetails",
+  part = c("contentDetails", "fileDetails", "id", "liveStreamingDetails",
     "localizations", "player", "processingDetails", "recordingDetails", "snippet",
     "statistics", "status", "suggestions", "topicDetails"),
+  fields = NULL,
   cl = NULL
 )
 }
 \arguments{
 \item{video_id}{Video ID, see \code{\link{ryt_get_videos}}.}
+
+\item{part}{The parameter identifies one or more top-level (non-nested) resource properties that should be included in an API response. Posible values: snippet, contentDetails, fileDetails, player, processingDetails, recordingDetails, statistics, status, suggestions, topicDetails.See \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
 
 \item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
 
@@ -25,15 +28,108 @@ tibble with video details
 \description{
 Get detail data of your videos on 'YouTube'
 }
+\details{
+For get more information about videos parts and fields go \href{this link}{https://developers.google.com/youtube/v3/docs/videos#properties}
+\emph{Properties:}
+\itemize{
+\item kind - Identifies the API resource's type. The value will be youtube#video.
+\item etag - The Etag of this resource.
+\item id - The ID that YouTube uses to uniquely identify the video.
+\item snippet - The snippet object contains basic details about the video, such as its title, description, and category.
+\itemize{
+\item snippet/publishedAt - The date and time that the video was published. Note that this time might be different than the time that the video was uploaded.
+\item snippet/channelId - The ID that YouTube uses to uniquely identify the channel that the video was uploaded to.
+\item snippet/title - The video's title.
+\item snippet/description - The video's description.
+\item snippet/thumbnails - A map of thumbnail images associated with the video.
+\item snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres
+\item snippet/thumbnails/(key)/url - The image's URL.
+\item snippet/thumbnails/(key)/width - The image's width.
+\item snippet/thumbnails/(key)/height - The image's height.
+\item snippet/channelTitle - Channel title for the channel that the video belongs to.
+\item snippet/tags[] - A list of keyword tags associated with the video.
+\item snippet/categoryId - The YouTube video category associated with the video.
+\item snippet/liveBroadcastContent - Indicates if the video is an upcoming/active live broadcast.
+\item snippet/defaultLanguage - The language of the text in the video resource's snippet.title and snippet.description properties.
+\item snippet/localized - The snippet.localized object contains either a localized title and description for the video or the title in the default language for the video's metadata.
+\item snippet/localized/title - The localized video title.
+\item snippet/localized/description - The localized video description.
+\item snippet/defaultAudioLanguage - The default_audio_language property specifies the language spoken in the video's default audio track.
+}
+\item contentDetails - The contentDetails object contains information about the video content, including the length of the video and an indication of whether captions are available for the video.
+\itemize{
+\item contentDetails/duration - The length of the video.
+\item contentDetails/dimension - Indicates whether the video is available in 3D or in 2D.
+\item contentDetails/definition - Indicates whether the video is available in high definition (HD) or only in standard definition.
+\item contentDetails/caption - Indicates whether captions are available for the video.
+\item contentDetails/licensedContent - Indicates whether the video represents licensed content, which means that the content was uploaded to a channel linked to a YouTube content partner and then claimed by that partner.
+\item contentDetails/regionRestriction - The regionRestriction object contains information about the countries where a video is (or is not) viewable.
+\item contentDetails/regionRestriction/allowed[] - A list of region codes that identify countries where the video is viewable.
+\item contentDetails/regionRestriction/blocked[] - A list of region codes that identify countries where the video is blocked.
+\item contentDetails/contentRating - Specifies the ratings that the video received under various rating schemes.
+\item contentDetails/contentRating/acbRating - The video's Australian Classification Board (ACB) or Australian Communications and Media Authority (ACMA) rating. ACMA ratings are used to classify children's television programming.
+\item contentDetails/contentRating/agcomRating - The video's rating from Italy's Autorità per le Garanzie nelle Comunicazioni (AGCOM).
+\item contentDetails/contentRating/anatelRating - The video's Anatel (Asociación Nacional de Televisión) rating for Chilean television.
+\item contentDetails/contentRating/bbfcRating - The video's British Board of Film Classification (BBFC) rating.
+\item contentDetails/contentRating/bfvcRating - The video's rating from Thailand's Board of Film and Video Censors.
+\item contentDetails/contentRating/bmukkRating - The video's rating from the Austrian Board of Media Classification.
+\item contentDetails/contentRating/catvRating - Rating system for Canadian TV - Canadian TV Classification System The video's rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian English-language broadcasts.
+\item contentDetails/contentRating/catvfrRating - The video's rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian French-language broadcasts.
+\item contentDetails/contentRating/cbfcRating - The video's Central Board of Film Certification (CBFC - India) rating.
+\item contentDetails/projection - Specifies the projection format of the video.
+\item contentDetails/hasCustomThumbnail - Indicates whether the video uploader has provided a custom thumbnail image for the video. This property is only visible to the video uploader.
+}
+\item status - The status object contains information about the video's uploading, processing, and privacy statuses.
+\itemize{
+\item status/uploadStatus - The status of the uploaded video.
+\item status/failureReason - This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.
+\item status/rejectionReason - This value explains why YouTube rejected an uploaded video.
+\item status/privacyStatus - The video's privacy status.
+\item status/publishAt - The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private.
+\item status/license - The video's license.
+\item status/embeddable - This value indicates whether the video can be embedded on another website.
+\item status/publicStatsViewable - This value indicates whether the extended video statistics on the video's watch page are publicly viewable.
+\item status/madeForKids - This value indicates whether the video is designated as child-directed, and it contains the current "made for kids" status of the video.
+\item status/selfDeclaredMadeForKids - In a videos.insert or videos.update request, this property allows the channel owner to designate the video as being child-directed.
+}
+\item statistics - The statistics object contains statistics about the video.
+\itemize{
+\item statistics/viewCount - The number of times the video has been viewed.
+\item statistics/likeCount - The number of users who have indicated that they liked the video.
+\item statistics/dislikeCount - The number of users who have indicated that they disliked the video.
+\item statistics/commentCount - The number of comments for the video.
+}
+}
+}
 \examples{
 \dontrun{
 # get all videos
 videos <- ryt_get_videos()
 
-# get videos metadata
+# get all videos metadata
 videos_details <- ryt_get_video_details(
     video_id = videos$id_video_id
 )
 
+# get only snippet and statistics part
+videos_details <- ryt_get_video_details(
+    video_id = videos$id_video_id,
+    part = c('snippet', 'statistics')
+)
+
+# get only id, channelId, title and view_count fields
+videos_details <- ryt_get_video_details(
+    video_id = videos$id_video_id,
+    part = c('snippet', 'statistics'),
+    fields = "items(id,snippet(channelId,title),statistics(viewCount))"
+)
+
+# same with other fields syntax like part/field
+# get only id, channelId, title and view_count fields
+videos_details <- ryt_get_video_details(
+    video_id = videos$id_video_id,
+    part = c('snippet', 'statistics'),
+    fields = "items(id,snippet/channelId,snippet/title,statistics/viewCount)"
+)
 }
 }

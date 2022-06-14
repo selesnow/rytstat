@@ -1,6 +1,6 @@
 ryt_get_video_details_helper <- function(
   video_id,
-  fields = c('contentDetails',
+  part   = c('contentDetails',
              'fileDetails',
              'id',
              'liveStreamingDetails',
@@ -12,16 +12,18 @@ ryt_get_video_details_helper <- function(
              'statistics',
              'status',
              'suggestions',
-             'topicDetails')
+             'topicDetails'),
+  fields = NULL
 ) {
 
-  fields <- paste0(fields, collapse = ",")
+  part <- paste0(part, collapse = ",")
 
   out <- request_build(
     method   = "GET",
     params   = list(
       id = video_id,
-      part = fields
+      part = part,
+      fields = fields
     ),
     token    = ryt_token(),
     path     = 'youtube/v3/videos',
