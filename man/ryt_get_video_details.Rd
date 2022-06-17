@@ -105,6 +105,79 @@ For get more information about videos parts and fields go \href{this link}{https
 \item player/embedHeight - The height of the embedded player returned in the player.embedHtml property.
 \item player/embedWidth - The width of the embedded player returned in the player.embedHtml property.
 }
+\item topicDetails - The topicDetails object encapsulates information about topics associated with the video.
+\itemize{
+\item topicDetails/relevantTopicIds[] - A list of topic IDs that are relevant to the video.
+\item topicDetails/topicCategories[] - A list of Wikipedia URLs that provide a high-level description of the video's content.
+}
+\item recordingDetails - The recordingDetails object encapsulates information about the location, date and address where the video was recorded.
+\itemize{
+\item recordingDetails/location - The geolocation information associated with the video.
+\item recordingDetails/recordingDate - The date and time when the video was recorded.
+}
+\item fileDetails - The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more.
+\itemize{
+\item fileDetails/fileName - The uploaded file's name.
+\item fileDetails/fileSize - The uploaded file's size in bytes.
+\item fileDetails/fileType - The uploaded file's type as detected by YouTube's video processing engine.
+\item fileDetails/container - The uploaded video file's container format.
+\item fileDetails/videoStreams[] - A list of video streams contained in the uploaded video file.
+\item fileDetails/videoStreams[]/widthPixels - The encoded video content's width in pixels.
+\item fileDetails/videoStreams[]/heightPixels - The encoded video content's height in pixels.
+\item fileDetails/videoStreams[]/frameRateFps - The video stream's frame rate, in frames per second.
+\item fileDetails/videoStreams[]/aspectRatio - The video content's display aspect ratio, which specifies the aspect ratio in which the video should be displayed.
+\item fileDetails/videoStreams[]/codec - The video codec that the stream uses.
+\item fileDetails/videoStreams[]/bitrateBps - The video stream's bitrate, in bits per second.
+\item fileDetails/videoStreams[]/rotation - The amount that YouTube needs to rotate the original source content to properly display the video.
+\item fileDetails/videoStreams[]/vendor - A value that uniquely identifies a video vendor.
+\item fileDetails/audioStreams[] - A list of audio streams contained in the uploaded video file.
+\item fileDetails/audioStreams[]/channelCount - The number of audio channels that the stream contains.
+\item fileDetails/audioStreams[]/codec - The audio codec that the stream uses.
+\item fileDetails/audioStreams[]/bitrateBps - The audio stream's bitrate, in bits per second.
+\item fileDetails/audioStreams[]/vendor - A value that uniquely identifies a video vendor.
+\item fileDetails/durationMs - The length of the uploaded video in milliseconds.
+\item fileDetails/bitrateBps - The uploaded video file's combined (video and audio) bitrate in bits per second.
+\item fileDetails/creationTime - The date and time when the uploaded video file was created.
+}
+\item processingDetails - The processingDetails object encapsulates information about YouTube's progress in processing the uploaded video file.
+\itemize{
+\item processingDetails/processingStatus - The video's processing status.
+\item processingDetails/processingProgress - The processingProgress object contains information about the progress YouTube has made in processing the video.
+\item processingDetails/processingProgress/partsTotal - An estimate of the total number of parts that need to be processed for the video.
+\item processingDetails/processingProgress/partsProcessed - The number of parts of the video that YouTube has already processed.
+\item processingDetails/processingProgress/timeLeftMs - An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video.
+\item processingDetails/processingFailureReason - The reason that YouTube failed to process the video.
+\item processingDetails/fileDetailsAvailability - This value indicates whether file details are available for the uploaded video.
+\item processingDetails/processingIssuesAvailability - This value indicates whether the video processing engine has generated suggestions that might improve YouTube's ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems.
+\item processingDetails/tagSuggestionsAvailability - This value indicates whether keyword (tag) suggestions are available for the video.
+\item processingDetails/editorSuggestionsAvailability - This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video.
+\item processingDetails/thumbnailsAvailability - This value indicates whether thumbnail images have been generated for the video.
+}
+\item suggestions - The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video.
+\itemize{
+\item suggestions/processingErrors[] - A list of errors that will prevent YouTube from successfully processing the uploaded video.
+\item suggestions/processingWarnings[] - A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding.
+\item suggestions/processingHints[] - A list of suggestions that may improve YouTube's ability to process the video.
+\item suggestions/tagSuggestions[] - A list of keyword tags that could be added to the video's metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube.
+\item suggestions/tagSuggestions[]/tag - The keyword tag suggested for the video.
+\item suggestions/tagSuggestions[].categoryRestricts[] - A set of video categories for which the tag is relevant.
+\item suggestions/editorSuggestions[] - A list of video editing operations that might improve the video quality or playback experience of the uploaded video.
+}
+\item liveStreamingDetails - The liveStreamingDetails object contains metadata about a live video broadcast.
+\itemize{
+\item liveStreamingDetails/actualStartTime - The time that the broadcast actually started.
+\item liveStreamingDetails/actualEndTime - The time that the broadcast actually ended.
+\item liveStreamingDetails/scheduledStartTime - The time that the broadcast is scheduled to begin.
+\item liveStreamingDetails/scheduledEndTime - The time that the broadcast is scheduled to end.
+\item liveStreamingDetails/concurrentViewers - The number of viewers currently watching the broadcast.
+\item liveStreamingDetails/activeLiveChatId - The ID of the currently active live chat attached to this video.
+}
+\item localizations - The localizations object contains translations of the video's metadata.
+\itemize{
+\item localizations/(key) - The language of the localized text associated with the key value.
+\item localizations/(key).title - The localized video title.
+\item localizations/(key).description - The localized video description.
+}
 }
 }
 \examples{

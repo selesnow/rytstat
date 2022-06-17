@@ -5,15 +5,80 @@
 \title{Get playlist from 'YouTube API'}
 \usage{
 ryt_get_playlists(
-  fields = c("contentDetails", "id", "localizations", "player", "snippet", "status")
+  part = c("contentDetails", "id", "localizations", "player", "snippet", "status"),
+  fields = NULL
 )
 }
 \arguments{
-\item{fields}{Fields of playist metadata, see \href{https://developers.google.com/youtube/v3/docs/playlists/list}{API documentation}.}
+\item{part}{parts of playist metadata, see \href{https://developers.google.com/youtube/v3/docs/playlists/list}{API documentation}.}
+
+\item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/playlists/list#parameters}{API documentation}.}
 }
 \value{
 tibble with playlist metadata
 }
 \description{
 Get playlist from 'YouTube API'
+}
+\details{
+Parts and fields
+\strong{part:}
+\itemize{
+\item contentDetails
+\item id
+\item localizations
+\item player
+\item snippet
+\item status
+}
+
+\strong{parts and fields details}
+\itemize{
+\item kind - Identifies the API resource's type.
+\item etag - The Etag of this resource.
+\item id - The ID that YouTube uses to uniquely identify the playlist.
+\item snippet - The snippet object contains basic details about the playlist, such as its title and description.
+\itemize{
+\item snippet/publishedAt - The date and time that the playlist was created.
+\item snippet/channelId - The ID that YouTube uses to uniquely identify the channel that published the playlist.
+\item snippet/title - The playlist's title.
+\item snippet/description - The playlist's description.
+\item snippet/thumbnails - A map of thumbnail images associated with the playlist.
+\item snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres
+\item snippet/thumbnails/(key)/url - The image's URL.
+\item snippet/thumbnails/(key)/width - The image's width.
+\item snippet/thumbnails/(key)/height - The image's height.
+\item snippet/channelTitle - The channel title of the channel that the video belongs to.
+\item snippet/defaultLanguage - The language of the text in the playlist resource's snippet.title and snippet.description properties.
+\item snippet/localized - The snippet.localized object contains either a localized title and description for the playlist or the title in the default language for the playlist's metadata.
+\item snippet/localized/title - The localized playlist title.
+\item snippet/localized/description - The localized playlist description.
+}
+\item status - The status object contains status information for the playlist.
+\itemize{
+\item status/privacyStatus - The playlist's privacy status.
+}
+\item contentDetails - The contentDetails object contains information about the playlist content, including the number of videos in the playlist.
+\itemize{
+\item contentDetails/itemCount - The number of videos in the playlist.
+}
+\item player - The player object contains information that you would use to play the playlist in an embedded player.
+\itemize{
+\item player/embedHtml - An iframe tag that embeds a player that will play the playlist.
+}
+\item localizations - The localizations object encapsulates translations of the playlist's metadata.
+\itemize{
+\item localizations/(key) - The language of the localized text associated with the key value.
+\item localizations/(key)/title - The localized playlist title.
+\item localizations/(key)/description - The localized playlist description.
+}
+}
+}
+\examples{
+\dontrun{
+pl <- ryt_get_playlists(
+    part = c('id', 'contentDetails', 'snippet'),
+    fields = 'items(id,snippet/channelId,snippet/title,contentDetails/itemCount)'
+ )
+}
 }

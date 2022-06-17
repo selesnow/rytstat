@@ -6,14 +6,17 @@
 \usage{
 ryt_get_playlist_items(
   playlist_id,
-  fields = c("contentDetails", "id", "snippet", "status"),
+  part = c("contentDetails", "id", "snippet", "status"),
+  fields = NULL,
   cl = NULL
 )
 }
 \arguments{
 \item{playlist_id}{Playlist ID, see \code{\link{ryt_get_playlists}}.}
 
-\item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/playlistItems/list}{API documentation}.}
+\item{part}{The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. see \href{https://developers.google.com/youtube/v3/docs/playlistItems/list}{API documentation}.}
+
+\item{fields}{The fields parameter filters the API response, which only contains the resource parts identified in the part parameter value, so that the response only includes a specific set of fields. see \href{https://developers.google.com/youtube/v3/docs/playlistItems/list#properties}{API documentation}.}
 
 \item{cl}{A cluster object created by \code{\link{makeCluster}}, or an integer to indicate number of child-processes (integer values are ignored on Windows) for parallel evaluations (see Details on performance).}
 }
@@ -22,4 +25,64 @@ tibble with playlist items details
 }
 \description{
 Get playlist items data on 'YouTube'
+}
+\details{
+Parts and fields
+\strong{part:}
+\itemize{
+\item contentDetails
+\item id
+\item snippet
+\item status
+}
+
+\strong{parts and fields details}
+\itemize{
+\item kind - Identifies the API resource's type. The value will be youtube#playlistItemListResponse.
+\item etag - The Etag of this resource.
+\item id - The ID that YouTube uses to uniquely identify the playlist item.
+\item snippet - The snippet object contains basic details about the playlist item, such as its title and position in the playlist.
+\itemize{
+\item snippet/publishedAt - The date and time that the item was added to the playlist.
+\item snippet/channelId - The ID that YouTube uses to uniquely identify the user that added the item to the playlist.
+\item snippet/title - The item's title.
+\item snippet/description - The item's description.
+\item snippet/thumbnails - A map of thumbnail images associated with the playlist item.
+\item snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres
+\item snippet/thumbnails/(key)/url - The image's URL.
+\item snippet/thumbnails/(key)/width - The image's width.
+\item snippet/thumbnails/(key)/height - The image's height.
+\item snippet/channelTitle - The channel title of the channel that the playlist item belongs to.
+\item snippet/videoOwnerChannelTitle - The channel title of the channel that uploaded this video.
+\item snippet/videoOwnerChannelId - The channel ID of the channel that uploaded this video.
+\item snippet/playlistId - The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.
+\item snippet/position - The order in which the item appears in the playlist.
+\item snippet/resourceId	- The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item.
+\item snippet/resourceId.kind - The kind, or type, of the referred resource.
+\item snippet/resourceId/videoId - If the snippet.resourceId.kind property's value is youtube#video, then this property will be present and its value will contain the ID that YouTube uses to uniquely identify the video in the playlist.
+}
+\item contentDetails - The contentDetails object is included in the resource if the included item is a YouTube video. The object contains additional information about the video.
+\itemize{
+\item contentDetails/videoId - The ID that YouTube uses to uniquely identify a video.
+\item contentDetails/note - A user-generated note for this item. The property value has a maximum length of 280 characters.
+\item contentDetails/videoPublishedAt - The date and time that the video was published to YouTube.
+}
+\item status - The status object contains information about the playlist item's privacy status.
+\itemize{
+\item status/privacyStatus - The playlist item's privacy status.
+}
+}
+}
+\examples{
+\dontrun{
+# get playlist ids and title
+pl <- ryt_get_playlists(part = c('id', 'snippet'), fields = 'items(id, snippet/title)')
+
+# get itemms of first playlist
+pli <- ryt_get_playlist_items(
+    playlist_id = pl$id[1],
+    part = c('contentDetails', 'snippet'),
+    fields = 'items(id,snippet/channelId,snippet/title,contentDetails/videoId)'
+ )
+}
 }

@@ -1,17 +1,19 @@
 ryt_get_playlist_items_helper <- function(
   playlist_id,
-  fields = c('contentDetails',
-             'id',
-             'snippet',
-             'status')
+  part = c('contentDetails',
+           'id',
+           'snippet',
+           'status'),
+  fields = NULL
 ) {
 
 
-  fields <- paste0(fields, collapse = ",")
+  part <- paste0(part, collapse = ",")
 
   q_params <- list(
     playlistId = playlist_id,
-    part = fields,
+    part = part,
+    fields = fields,
     maxResults = 50
   )
 
@@ -66,7 +68,7 @@ ryt_get_playlist_items_helper <- function(
     }
 
     nested_fields <- select(result, where(is.list)) %>%
-      names()
+                     names()
 
     nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 

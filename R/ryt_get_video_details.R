@@ -70,7 +70,65 @@
 #'   * player/embedHtml - An <iframe> tag that embeds a player that plays the video.
 #'   * player/embedHeight - The height of the embedded player returned in the player.embedHtml property.
 #'   * player/embedWidth - The width of the embedded player returned in the player.embedHtml property.
-#'
+#' * topicDetails - The topicDetails object encapsulates information about topics associated with the video.
+#'   * topicDetails/relevantTopicIds[] - A list of topic IDs that are relevant to the video.
+#'   * topicDetails/topicCategories[] - A list of Wikipedia URLs that provide a high-level description of the video's content.
+#' * recordingDetails - The recordingDetails object encapsulates information about the location, date and address where the video was recorded.
+#'   * recordingDetails/location - The geolocation information associated with the video.
+#'   * recordingDetails/recordingDate - The date and time when the video was recorded.
+#' * fileDetails - The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more.
+#'   * fileDetails/fileName - The uploaded file's name.
+#'   * fileDetails/fileSize - The uploaded file's size in bytes.
+#'   * fileDetails/fileType - The uploaded file's type as detected by YouTube's video processing engine.
+#'   * fileDetails/container - The uploaded video file's container format.
+#'   * fileDetails/videoStreams[] - A list of video streams contained in the uploaded video file.
+#'   * fileDetails/videoStreams[]/widthPixels - The encoded video content's width in pixels.
+#'   * fileDetails/videoStreams[]/heightPixels - The encoded video content's height in pixels.
+#'   * fileDetails/videoStreams[]/frameRateFps - The video stream's frame rate, in frames per second.
+#'   * fileDetails/videoStreams[]/aspectRatio - The video content's display aspect ratio, which specifies the aspect ratio in which the video should be displayed.
+#'   * fileDetails/videoStreams[]/codec - The video codec that the stream uses.
+#'   * fileDetails/videoStreams[]/bitrateBps - The video stream's bitrate, in bits per second.
+#'   * fileDetails/videoStreams[]/rotation - The amount that YouTube needs to rotate the original source content to properly display the video.
+#'   * fileDetails/videoStreams[]/vendor - A value that uniquely identifies a video vendor.
+#'   * fileDetails/audioStreams[] - A list of audio streams contained in the uploaded video file.
+#'   * fileDetails/audioStreams[]/channelCount - The number of audio channels that the stream contains.
+#'   * fileDetails/audioStreams[]/codec - The audio codec that the stream uses.
+#'   * fileDetails/audioStreams[]/bitrateBps - The audio stream's bitrate, in bits per second.
+#'   * fileDetails/audioStreams[]/vendor - A value that uniquely identifies a video vendor.
+#'   * fileDetails/durationMs - The length of the uploaded video in milliseconds.
+#'   * fileDetails/bitrateBps - The uploaded video file's combined (video and audio) bitrate in bits per second.
+#'   * fileDetails/creationTime - The date and time when the uploaded video file was created.
+#' * processingDetails - The processingDetails object encapsulates information about YouTube's progress in processing the uploaded video file.
+#'   * processingDetails/processingStatus - The video's processing status.
+#'   * processingDetails/processingProgress - The processingProgress object contains information about the progress YouTube has made in processing the video.
+#'   * processingDetails/processingProgress/partsTotal - An estimate of the total number of parts that need to be processed for the video.
+#'   * processingDetails/processingProgress/partsProcessed - The number of parts of the video that YouTube has already processed.
+#'   * processingDetails/processingProgress/timeLeftMs - An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video.
+#'   * processingDetails/processingFailureReason - The reason that YouTube failed to process the video.
+#'   * processingDetails/fileDetailsAvailability - This value indicates whether file details are available for the uploaded video.
+#'   * processingDetails/processingIssuesAvailability - This value indicates whether the video processing engine has generated suggestions that might improve YouTube's ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems.
+#'   * processingDetails/tagSuggestionsAvailability - This value indicates whether keyword (tag) suggestions are available for the video.
+#'   * processingDetails/editorSuggestionsAvailability - This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video.
+#'   * processingDetails/thumbnailsAvailability - This value indicates whether thumbnail images have been generated for the video.
+#' * suggestions - The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video.
+#'   * suggestions/processingErrors[] - A list of errors that will prevent YouTube from successfully processing the uploaded video.
+#'   * suggestions/processingWarnings[] - A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding.
+#'   * suggestions/processingHints[] - A list of suggestions that may improve YouTube's ability to process the video.
+#'   * suggestions/tagSuggestions[] - A list of keyword tags that could be added to the video's metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube.
+#'   * suggestions/tagSuggestions[]/tag - The keyword tag suggested for the video.
+#'   * suggestions/tagSuggestions[].categoryRestricts[] - A set of video categories for which the tag is relevant.
+#'   * suggestions/editorSuggestions[] - A list of video editing operations that might improve the video quality or playback experience of the uploaded video.
+#' * liveStreamingDetails - The liveStreamingDetails object contains metadata about a live video broadcast.
+#'   * liveStreamingDetails/actualStartTime - The time that the broadcast actually started.
+#'   * liveStreamingDetails/actualEndTime - The time that the broadcast actually ended.
+#'   * liveStreamingDetails/scheduledStartTime - The time that the broadcast is scheduled to begin.
+#'   * liveStreamingDetails/scheduledEndTime - The time that the broadcast is scheduled to end.
+#'   * liveStreamingDetails/concurrentViewers - The number of viewers currently watching the broadcast.
+#'   * liveStreamingDetails/activeLiveChatId - The ID of the currently active live chat attached to this video.
+#' * localizations - The localizations object contains translations of the video's metadata.
+#'   * localizations/(key) - The language of the localized text associated with the key value.
+#'   * localizations/(key).title - The localized video title.
+#'   * localizations/(key).description - The localized video description.
 #'
 #' @return tibble with video details
 #' @export
