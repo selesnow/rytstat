@@ -23,7 +23,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -59,7 +59,8 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ryt_get_playlist_items</span><span class="op">(</span>
   <span class="va">playlist_id</span>,
-  fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"snippet"</span>, <span class="st">"status"</span><span class="op">)</span>,
+  part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"snippet"</span>, <span class="st">"status"</span><span class="op">)</span>,
+  fields <span class="op">=</span> <span class="cn">NULL</span>,
   cl <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -68,8 +69,10 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>playlist_id</dt>
 <dd><p>Playlist ID, see <code><a href="ryt_get_playlists.html">ryt_get_playlists</a></code>.</p></dd>
+<dt>part</dt>
+<dd><p>The part parameter specifies a comma-separated list of one or more playlistItem resource properties that the API response will include. see <a href="https://developers.google.com/youtube/v3/docs/playlistItems/list" class="external-link">API documentation</a>.</p></dd>
 <dt>fields</dt>
-<dd><p>Fields of video metadata, see <a href="https://developers.google.com/youtube/v3/docs/playlistItems/list" class="external-link">API documentation</a>.</p></dd>
+<dd><p>The fields parameter filters the API response, which only contains the resource parts identified in the part parameter value, so that the response only includes a specific set of fields. see <a href="https://developers.google.com/youtube/v3/docs/playlistItems/list#properties" class="external-link">API documentation</a>.</p></dd>
 <dt>cl</dt>
 <dd><p>A cluster object created by <code>makeCluster</code>, or an integer to indicate number of child-processes (integer values are ignored on Windows) for parallel evaluations (see Details on performance).</p></dd>
 </dl></div>
@@ -77,7 +80,57 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>tibble with playlist items details</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Parts and fields
+<strong>part:</strong></p><ul><li><p>contentDetails</p></li>
+<li><p>id</p></li>
+<li><p>snippet</p></li>
+<li><p>status</p></li>
+</ul><p><strong>parts and fields details</strong></p><ul><li><p>kind - Identifies the API resource's type. The value will be youtube#playlistItemListResponse.</p></li>
+<li><p>etag - The Etag of this resource.</p></li>
+<li><p>id - The ID that YouTube uses to uniquely identify the playlist item.</p></li>
+<li><p>snippet - The snippet object contains basic details about the playlist item, such as its title and position in the playlist.</p><ul><li><p>snippet/publishedAt - The date and time that the item was added to the playlist.</p></li>
+<li><p>snippet/channelId - The ID that YouTube uses to uniquely identify the user that added the item to the playlist.</p></li>
+<li><p>snippet/title - The item's title.</p></li>
+<li><p>snippet/description - The item's description.</p></li>
+<li><p>snippet/thumbnails - A map of thumbnail images associated with the playlist item.</p></li>
+<li><p>snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres</p></li>
+<li><p>snippet/thumbnails/(key)/url - The image's URL.</p></li>
+<li><p>snippet/thumbnails/(key)/width - The image's width.</p></li>
+<li><p>snippet/thumbnails/(key)/height - The image's height.</p></li>
+<li><p>snippet/channelTitle - The channel title of the channel that the playlist item belongs to.</p></li>
+<li><p>snippet/videoOwnerChannelTitle - The channel title of the channel that uploaded this video.</p></li>
+<li><p>snippet/videoOwnerChannelId - The channel ID of the channel that uploaded this video.</p></li>
+<li><p>snippet/playlistId - The ID that YouTube uses to uniquely identify the playlist that the playlist item is in.</p></li>
+<li><p>snippet/position - The order in which the item appears in the playlist.</p></li>
+<li><p>snippet/resourceId	- The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item.</p></li>
+<li><p>snippet/resourceId.kind - The kind, or type, of the referred resource.</p></li>
+<li><p>snippet/resourceId/videoId - If the snippet.resourceId.kind property's value is youtube#video, then this property will be present and its value will contain the ID that YouTube uses to uniquely identify the video in the playlist.</p></li>
+</ul></li>
+<li><p>contentDetails - The contentDetails object is included in the resource if the included item is a YouTube video. The object contains additional information about the video.</p><ul><li><p>contentDetails/videoId - The ID that YouTube uses to uniquely identify a video.</p></li>
+<li><p>contentDetails/note - A user-generated note for this item. The property value has a maximum length of 280 characters.</p></li>
+<li><p>contentDetails/videoPublishedAt - The date and time that the video was published to YouTube.</p></li>
+</ul></li>
+<li><p>status - The status object contains information about the playlist item's privacy status.</p><ul><li><p>status/privacyStatus - The playlist item's privacy status.</p></li>
+</ul></li>
+</ul></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="co"># get playlist ids and title</span></span>
+<span class="r-in"><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu"><a href="ryt_get_playlists.html">ryt_get_playlists</a></span><span class="op">(</span>part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'id'</span>, <span class="st">'snippet'</span><span class="op">)</span>, fields <span class="op">=</span> <span class="st">'items(id, snippet/title)'</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get itemms of first playlist</span></span>
+<span class="r-in"><span class="va">pli</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_playlist_items</span><span class="op">(</span></span>
+<span class="r-in">    playlist_id <span class="op">=</span> <span class="va">pl</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span class="r-in">    part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'contentDetails'</span>, <span class="st">'snippet'</span><span class="op">)</span>,</span>
+<span class="r-in">    fields <span class="op">=</span> <span class="st">'items(id,snippet/channelId,snippet/title,contentDetails/videoId)'</span></span>
+<span class="r-in"> <span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -87,7 +140,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

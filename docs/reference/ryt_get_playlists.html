@@ -23,7 +23,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -58,20 +58,71 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ryt_get_playlists</span><span class="op">(</span>
-  fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"localizations"</span>, <span class="st">"player"</span>, <span class="st">"snippet"</span>, <span class="st">"status"</span><span class="op">)</span>
+  part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"localizations"</span>, <span class="st">"player"</span>, <span class="st">"snippet"</span>, <span class="st">"status"</span><span class="op">)</span>,
+  fields <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>fields</dt>
-<dd><p>Fields of playist metadata, see <a href="https://developers.google.com/youtube/v3/docs/playlists/list" class="external-link">API documentation</a>.</p></dd>
+    <dl><dt>part</dt>
+<dd><p>parts of playist metadata, see <a href="https://developers.google.com/youtube/v3/docs/playlists/list" class="external-link">API documentation</a>.</p></dd>
+<dt>fields</dt>
+<dd><p>Fields of video metadata, see <a href="https://developers.google.com/youtube/v3/docs/playlists/list#parameters" class="external-link">API documentation</a>.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>tibble with playlist metadata</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Parts and fields
+<strong>part:</strong></p><ul><li><p>contentDetails</p></li>
+<li><p>id</p></li>
+<li><p>localizations</p></li>
+<li><p>player</p></li>
+<li><p>snippet</p></li>
+<li><p>status</p></li>
+</ul><p><strong>parts and fields details</strong></p><ul><li><p>kind - Identifies the API resource's type.</p></li>
+<li><p>etag - The Etag of this resource.</p></li>
+<li><p>id - The ID that YouTube uses to uniquely identify the playlist.</p></li>
+<li><p>snippet - The snippet object contains basic details about the playlist, such as its title and description.</p><ul><li><p>snippet/publishedAt - The date and time that the playlist was created.</p></li>
+<li><p>snippet/channelId - The ID that YouTube uses to uniquely identify the channel that published the playlist.</p></li>
+<li><p>snippet/title - The playlist's title.</p></li>
+<li><p>snippet/description - The playlist's description.</p></li>
+<li><p>snippet/thumbnails - A map of thumbnail images associated with the playlist.</p></li>
+<li><p>snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres</p></li>
+<li><p>snippet/thumbnails/(key)/url - The image's URL.</p></li>
+<li><p>snippet/thumbnails/(key)/width - The image's width.</p></li>
+<li><p>snippet/thumbnails/(key)/height - The image's height.</p></li>
+<li><p>snippet/channelTitle - The channel title of the channel that the video belongs to.</p></li>
+<li><p>snippet/defaultLanguage - The language of the text in the playlist resource's snippet.title and snippet.description properties.</p></li>
+<li><p>snippet/localized - The snippet.localized object contains either a localized title and description for the playlist or the title in the default language for the playlist's metadata.</p></li>
+<li><p>snippet/localized/title - The localized playlist title.</p></li>
+<li><p>snippet/localized/description - The localized playlist description.</p></li>
+</ul></li>
+<li><p>status - The status object contains status information for the playlist.</p><ul><li><p>status/privacyStatus - The playlist's privacy status.</p></li>
+</ul></li>
+<li><p>contentDetails - The contentDetails object contains information about the playlist content, including the number of videos in the playlist.</p><ul><li><p>contentDetails/itemCount - The number of videos in the playlist.</p></li>
+</ul></li>
+<li><p>player - The player object contains information that you would use to play the playlist in an embedded player.</p><ul><li><p>player/embedHtml - An iframe tag that embeds a player that will play the playlist.</p></li>
+</ul></li>
+<li><p>localizations - The localizations object encapsulates translations of the playlist's metadata.</p><ul><li><p>localizations/(key) - The language of the localized text associated with the key value.</p></li>
+<li><p>localizations/(key)/title - The localized playlist title.</p></li>
+<li><p>localizations/(key)/description - The localized playlist description.</p></li>
+</ul></li>
+</ul></div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">pl</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_playlists</span><span class="op">(</span></span>
+<span class="r-in">    part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'id'</span>, <span class="st">'contentDetails'</span>, <span class="st">'snippet'</span><span class="op">)</span>,</span>
+<span class="r-in">    fields <span class="op">=</span> <span class="st">'items(id,snippet/channelId,snippet/title,contentDetails/itemCount)'</span></span>
+<span class="r-in"> <span class="op">)</span></span>
+<span class="r-in"><span class="op">}</span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -81,7 +132,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>

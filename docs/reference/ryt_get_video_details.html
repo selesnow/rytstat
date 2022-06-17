@@ -23,7 +23,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -59,9 +59,10 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ryt_get_video_details</span><span class="op">(</span>
   <span class="va">video_id</span>,
-  fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"fileDetails"</span>, <span class="st">"id"</span>, <span class="st">"liveStreamingDetails"</span>,
+  part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"fileDetails"</span>, <span class="st">"id"</span>, <span class="st">"liveStreamingDetails"</span>,
     <span class="st">"localizations"</span>, <span class="st">"player"</span>, <span class="st">"processingDetails"</span>, <span class="st">"recordingDetails"</span>, <span class="st">"snippet"</span>,
     <span class="st">"statistics"</span>, <span class="st">"status"</span>, <span class="st">"suggestions"</span>, <span class="st">"topicDetails"</span><span class="op">)</span>,
+  fields <span class="op">=</span> <span class="cn">NULL</span>,
   cl <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -70,6 +71,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>video_id</dt>
 <dd><p>Video ID, see <code><a href="ryt_get_videos.html">ryt_get_videos</a></code>.</p></dd>
+<dt>part</dt>
+<dd><p>The parameter identifies one or more top-level (non-nested) resource properties that should be included in an API response. Posible values: snippet, contentDetails, fileDetails, player, processingDetails, recordingDetails, statistics, status, suggestions, topicDetails.See <a href="https://developers.google.com/youtube/v3/docs/videos/list" class="external-link">API documentation</a>.</p></dd>
 <dt>fields</dt>
 <dd><p>Fields of video metadata, see <a href="https://developers.google.com/youtube/v3/docs/videos/list" class="external-link">API documentation</a>.</p></dd>
 <dt>cl</dt>
@@ -79,6 +82,132 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>tibble with video details</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>For get more information about videos parts and fields go <a href="this%20link">https://developers.google.com/youtube/v3/docs/videos#properties</a>
+<em>Properties:</em></p><ul><li><p>kind - Identifies the API resource's type. The value will be youtube#video.</p></li>
+<li><p>etag - The Etag of this resource.</p></li>
+<li><p>id - The ID that YouTube uses to uniquely identify the video.</p></li>
+<li><p>snippet - The snippet object contains basic details about the video, such as its title, description, and category.</p><ul><li><p>snippet/publishedAt - The date and time that the video was published. Note that this time might be different than the time that the video was uploaded.</p></li>
+<li><p>snippet/channelId - The ID that YouTube uses to uniquely identify the channel that the video was uploaded to.</p></li>
+<li><p>snippet/title - The video's title.</p></li>
+<li><p>snippet/description - The video's description.</p></li>
+<li><p>snippet/thumbnails - A map of thumbnail images associated with the video.</p></li>
+<li><p>snippet/thumbnails/(key) - Valid key values are: default, medium, high, standard, maxres</p></li>
+<li><p>snippet/thumbnails/(key)/url - The image's URL.</p></li>
+<li><p>snippet/thumbnails/(key)/width - The image's width.</p></li>
+<li><p>snippet/thumbnails/(key)/height - The image's height.</p></li>
+<li><p>snippet/channelTitle - Channel title for the channel that the video belongs to.</p></li>
+<li><p>snippet/tags[] - A list of keyword tags associated with the video.</p></li>
+<li><p>snippet/categoryId - The YouTube video category associated with the video.</p></li>
+<li><p>snippet/liveBroadcastContent - Indicates if the video is an upcoming/active live broadcast.</p></li>
+<li><p>snippet/defaultLanguage - The language of the text in the video resource's snippet.title and snippet.description properties.</p></li>
+<li><p>snippet/localized - The snippet.localized object contains either a localized title and description for the video or the title in the default language for the video's metadata.</p></li>
+<li><p>snippet/localized/title - The localized video title.</p></li>
+<li><p>snippet/localized/description - The localized video description.</p></li>
+<li><p>snippet/defaultAudioLanguage - The default_audio_language property specifies the language spoken in the video's default audio track.</p></li>
+</ul></li>
+<li><p>contentDetails - The contentDetails object contains information about the video content, including the length of the video and an indication of whether captions are available for the video.</p><ul><li><p>contentDetails/duration - The length of the video.</p></li>
+<li><p>contentDetails/dimension - Indicates whether the video is available in 3D or in 2D.</p></li>
+<li><p>contentDetails/definition - Indicates whether the video is available in high definition (HD) or only in standard definition.</p></li>
+<li><p>contentDetails/caption - Indicates whether captions are available for the video.</p></li>
+<li><p>contentDetails/licensedContent - Indicates whether the video represents licensed content, which means that the content was uploaded to a channel linked to a YouTube content partner and then claimed by that partner.</p></li>
+<li><p>contentDetails/regionRestriction - The regionRestriction object contains information about the countries where a video is (or is not) viewable.</p></li>
+<li><p>contentDetails/regionRestriction/allowed[] - A list of region codes that identify countries where the video is viewable.</p></li>
+<li><p>contentDetails/regionRestriction/blocked[] - A list of region codes that identify countries where the video is blocked.</p></li>
+<li><p>contentDetails/contentRating - Specifies the ratings that the video received under various rating schemes.</p></li>
+<li><p>contentDetails/contentRating/acbRating - The video's Australian Classification Board (ACB) or Australian Communications and Media Authority (ACMA) rating. ACMA ratings are used to classify children's television programming.</p></li>
+<li><p>contentDetails/contentRating/agcomRating - The video's rating from Italy's Autorità per le Garanzie nelle Comunicazioni (AGCOM).</p></li>
+<li><p>contentDetails/contentRating/anatelRating - The video's Anatel (Asociación Nacional de Televisión) rating for Chilean television.</p></li>
+<li><p>contentDetails/contentRating/bbfcRating - The video's British Board of Film Classification (BBFC) rating.</p></li>
+<li><p>contentDetails/contentRating/bfvcRating - The video's rating from Thailand's Board of Film and Video Censors.</p></li>
+<li><p>contentDetails/contentRating/bmukkRating - The video's rating from the Austrian Board of Media Classification.</p></li>
+<li><p>contentDetails/contentRating/catvRating - Rating system for Canadian TV - Canadian TV Classification System The video's rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian English-language broadcasts.</p></li>
+<li><p>contentDetails/contentRating/catvfrRating - The video's rating from the Canadian Radio-Television and Telecommunications Commission (CRTC) for Canadian French-language broadcasts.</p></li>
+<li><p>contentDetails/contentRating/cbfcRating - The video's Central Board of Film Certification (CBFC - India) rating.</p></li>
+<li><p>contentDetails/projection - Specifies the projection format of the video.</p></li>
+<li><p>contentDetails/hasCustomThumbnail - Indicates whether the video uploader has provided a custom thumbnail image for the video. This property is only visible to the video uploader.</p></li>
+</ul></li>
+<li><p>status - The status object contains information about the video's uploading, processing, and privacy statuses.</p><ul><li><p>status/uploadStatus - The status of the uploaded video.</p></li>
+<li><p>status/failureReason - This value explains why a video failed to upload. This property is only present if the uploadStatus property indicates that the upload failed.</p></li>
+<li><p>status/rejectionReason - This value explains why YouTube rejected an uploaded video.</p></li>
+<li><p>status/privacyStatus - The video's privacy status.</p></li>
+<li><p>status/publishAt - The date and time when the video is scheduled to publish. It can be set only if the privacy status of the video is private.</p></li>
+<li><p>status/license - The video's license.</p></li>
+<li><p>status/embeddable - This value indicates whether the video can be embedded on another website.</p></li>
+<li><p>status/publicStatsViewable - This value indicates whether the extended video statistics on the video's watch page are publicly viewable.</p></li>
+<li><p>status/madeForKids - This value indicates whether the video is designated as child-directed, and it contains the current "made for kids" status of the video.</p></li>
+<li><p>status/selfDeclaredMadeForKids - In a videos.insert or videos.update request, this property allows the channel owner to designate the video as being child-directed.</p></li>
+</ul></li>
+<li><p>statistics - The statistics object contains statistics about the video.</p><ul><li><p>statistics/viewCount - The number of times the video has been viewed.</p></li>
+<li><p>statistics/likeCount - The number of users who have indicated that they liked the video.</p></li>
+<li><p>statistics/dislikeCount - The number of users who have indicated that they disliked the video.</p></li>
+<li><p>statistics/commentCount - The number of comments for the video.</p></li>
+</ul></li>
+<li><p>player - The player object contains information that you would use to play the video in an embedded player.</p><ul><li><p>player/embedHtml - An &lt;iframe&gt; tag that embeds a player that plays the video.</p></li>
+<li><p>player/embedHeight - The height of the embedded player returned in the player.embedHtml property.</p></li>
+<li><p>player/embedWidth - The width of the embedded player returned in the player.embedHtml property.</p></li>
+</ul></li>
+<li><p>topicDetails - The topicDetails object encapsulates information about topics associated with the video.</p><ul><li><p>topicDetails/relevantTopicIds[] - A list of topic IDs that are relevant to the video.</p></li>
+<li><p>topicDetails/topicCategories[] - A list of Wikipedia URLs that provide a high-level description of the video's content.</p></li>
+</ul></li>
+<li><p>recordingDetails - The recordingDetails object encapsulates information about the location, date and address where the video was recorded.</p><ul><li><p>recordingDetails/location - The geolocation information associated with the video.</p></li>
+<li><p>recordingDetails/recordingDate - The date and time when the video was recorded.</p></li>
+</ul></li>
+<li><p>fileDetails - The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more.</p><ul><li><p>fileDetails/fileName - The uploaded file's name.</p></li>
+<li><p>fileDetails/fileSize - The uploaded file's size in bytes.</p></li>
+<li><p>fileDetails/fileType - The uploaded file's type as detected by YouTube's video processing engine.</p></li>
+<li><p>fileDetails/container - The uploaded video file's container format.</p></li>
+<li><p>fileDetails/videoStreams[] - A list of video streams contained in the uploaded video file.</p></li>
+<li><p>fileDetails/videoStreams[]/widthPixels - The encoded video content's width in pixels.</p></li>
+<li><p>fileDetails/videoStreams[]/heightPixels - The encoded video content's height in pixels.</p></li>
+<li><p>fileDetails/videoStreams[]/frameRateFps - The video stream's frame rate, in frames per second.</p></li>
+<li><p>fileDetails/videoStreams[]/aspectRatio - The video content's display aspect ratio, which specifies the aspect ratio in which the video should be displayed.</p></li>
+<li><p>fileDetails/videoStreams[]/codec - The video codec that the stream uses.</p></li>
+<li><p>fileDetails/videoStreams[]/bitrateBps - The video stream's bitrate, in bits per second.</p></li>
+<li><p>fileDetails/videoStreams[]/rotation - The amount that YouTube needs to rotate the original source content to properly display the video.</p></li>
+<li><p>fileDetails/videoStreams[]/vendor - A value that uniquely identifies a video vendor.</p></li>
+<li><p>fileDetails/audioStreams[] - A list of audio streams contained in the uploaded video file.</p></li>
+<li><p>fileDetails/audioStreams[]/channelCount - The number of audio channels that the stream contains.</p></li>
+<li><p>fileDetails/audioStreams[]/codec - The audio codec that the stream uses.</p></li>
+<li><p>fileDetails/audioStreams[]/bitrateBps - The audio stream's bitrate, in bits per second.</p></li>
+<li><p>fileDetails/audioStreams[]/vendor - A value that uniquely identifies a video vendor.</p></li>
+<li><p>fileDetails/durationMs - The length of the uploaded video in milliseconds.</p></li>
+<li><p>fileDetails/bitrateBps - The uploaded video file's combined (video and audio) bitrate in bits per second.</p></li>
+<li><p>fileDetails/creationTime - The date and time when the uploaded video file was created.</p></li>
+</ul></li>
+<li><p>processingDetails - The processingDetails object encapsulates information about YouTube's progress in processing the uploaded video file.</p><ul><li><p>processingDetails/processingStatus - The video's processing status.</p></li>
+<li><p>processingDetails/processingProgress - The processingProgress object contains information about the progress YouTube has made in processing the video.</p></li>
+<li><p>processingDetails/processingProgress/partsTotal - An estimate of the total number of parts that need to be processed for the video.</p></li>
+<li><p>processingDetails/processingProgress/partsProcessed - The number of parts of the video that YouTube has already processed.</p></li>
+<li><p>processingDetails/processingProgress/timeLeftMs - An estimate of the amount of time, in millseconds, that YouTube needs to finish processing the video.</p></li>
+<li><p>processingDetails/processingFailureReason - The reason that YouTube failed to process the video.</p></li>
+<li><p>processingDetails/fileDetailsAvailability - This value indicates whether file details are available for the uploaded video.</p></li>
+<li><p>processingDetails/processingIssuesAvailability - This value indicates whether the video processing engine has generated suggestions that might improve YouTube's ability to process the the video, warnings that explain video processing problems, or errors that cause video processing problems.</p></li>
+<li><p>processingDetails/tagSuggestionsAvailability - This value indicates whether keyword (tag) suggestions are available for the video.</p></li>
+<li><p>processingDetails/editorSuggestionsAvailability - This value indicates whether video editing suggestions, which might improve video quality or the playback experience, are available for the video.</p></li>
+<li><p>processingDetails/thumbnailsAvailability - This value indicates whether thumbnail images have been generated for the video.</p></li>
+</ul></li>
+<li><p>suggestions - The suggestions object encapsulates suggestions that identify opportunities to improve the video quality or the metadata for the uploaded video.</p><ul><li><p>suggestions/processingErrors[] - A list of errors that will prevent YouTube from successfully processing the uploaded video.</p></li>
+<li><p>suggestions/processingWarnings[] - A list of reasons why YouTube may have difficulty transcoding the uploaded video or that might result in an erroneous transcoding.</p></li>
+<li><p>suggestions/processingHints[] - A list of suggestions that may improve YouTube's ability to process the video.</p></li>
+<li><p>suggestions/tagSuggestions[] - A list of keyword tags that could be added to the video's metadata to increase the likelihood that users will locate your video when searching or browsing on YouTube.</p></li>
+<li><p>suggestions/tagSuggestions[]/tag - The keyword tag suggested for the video.</p></li>
+<li><p>suggestions/tagSuggestions[].categoryRestricts[] - A set of video categories for which the tag is relevant.</p></li>
+<li><p>suggestions/editorSuggestions[] - A list of video editing operations that might improve the video quality or playback experience of the uploaded video.</p></li>
+</ul></li>
+<li><p>liveStreamingDetails - The liveStreamingDetails object contains metadata about a live video broadcast.</p><ul><li><p>liveStreamingDetails/actualStartTime - The time that the broadcast actually started.</p></li>
+<li><p>liveStreamingDetails/actualEndTime - The time that the broadcast actually ended.</p></li>
+<li><p>liveStreamingDetails/scheduledStartTime - The time that the broadcast is scheduled to begin.</p></li>
+<li><p>liveStreamingDetails/scheduledEndTime - The time that the broadcast is scheduled to end.</p></li>
+<li><p>liveStreamingDetails/concurrentViewers - The number of viewers currently watching the broadcast.</p></li>
+<li><p>liveStreamingDetails/activeLiveChatId - The ID of the currently active live chat attached to this video.</p></li>
+</ul></li>
+<li><p>localizations - The localizations object contains translations of the video's metadata.</p><ul><li><p>localizations/(key) - The language of the localized text associated with the key value.</p></li>
+<li><p>localizations/(key).title - The localized video title.</p></li>
+<li><p>localizations/(key).description - The localized video description.</p></li>
+</ul></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -86,11 +215,31 @@
 <span class="r-in"><span class="co"># get all videos</span></span>
 <span class="r-in"><span class="va">videos</span> <span class="op">&lt;-</span> <span class="fu"><a href="ryt_get_videos.html">ryt_get_videos</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># get videos metadata</span></span>
+<span class="r-in"><span class="co"># get all videos metadata</span></span>
 <span class="r-in"><span class="va">videos_details</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_video_details</span><span class="op">(</span></span>
 <span class="r-in">    video_id <span class="op">=</span> <span class="va">videos</span><span class="op">$</span><span class="va">id_video_id</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
+<span class="r-in"><span class="co"># get only snippet and statistics part</span></span>
+<span class="r-in"><span class="va">videos_details</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_video_details</span><span class="op">(</span></span>
+<span class="r-in">    video_id <span class="op">=</span> <span class="va">videos</span><span class="op">$</span><span class="va">id_video_id</span>,</span>
+<span class="r-in">    part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'snippet'</span>, <span class="st">'statistics'</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get only id, channelId, title and view_count fields</span></span>
+<span class="r-in"><span class="va">videos_details</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_video_details</span><span class="op">(</span></span>
+<span class="r-in">    video_id <span class="op">=</span> <span class="va">videos</span><span class="op">$</span><span class="va">id_video_id</span>,</span>
+<span class="r-in">    part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'snippet'</span>, <span class="st">'statistics'</span><span class="op">)</span>,</span>
+<span class="r-in">    fields <span class="op">=</span> <span class="st">"items(id,snippet(channelId,title),statistics(viewCount))"</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># same with other fields syntax like part/field</span></span>
+<span class="r-in"><span class="co"># get only id, channelId, title and view_count fields</span></span>
+<span class="r-in"><span class="va">videos_details</span> <span class="op">&lt;-</span> <span class="fu">ryt_get_video_details</span><span class="op">(</span></span>
+<span class="r-in">    video_id <span class="op">=</span> <span class="va">videos</span><span class="op">$</span><span class="va">id_video_id</span>,</span>
+<span class="r-in">    part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'snippet'</span>, <span class="st">'statistics'</span><span class="op">)</span>,</span>
+<span class="r-in">    fields <span class="op">=</span> <span class="st">"items(id,snippet/channelId,snippet/title,statistics/viewCount)"</span></span>
+<span class="r-in"><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
     </div>
@@ -103,7 +252,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>
