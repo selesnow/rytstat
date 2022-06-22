@@ -29,10 +29,9 @@ tibble with video details
 Get detail data of your videos on 'YouTube'
 }
 \details{
-For get more information about videos parts and fields go \href{https://developers.google.com/youtube/v3/docs/videos#properties}{this link}
-\emph{Properties:}
+\strong{Properties:}
 \itemize{
-\item kind - Identifies the API resource's type. The value will be youtube#video.
+\item kind - Identifies the API resource's type.
 \item etag - The Etag of this resource.
 \item id - The ID that YouTube uses to uniquely identify the video.
 \item snippet - The snippet object contains basic details about the video, such as its title, description, and category.

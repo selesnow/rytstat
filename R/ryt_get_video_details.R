@@ -6,7 +6,7 @@
 #' @param cl A cluster object created by \code{\link{makeCluster}}, or an integer to indicate number of child-processes (integer values are ignored on Windows) for parallel evaluations (see Details on performance).
 #'
 #' @details For get more information about videos parts and fields go \href{https://developers.google.com/youtube/v3/docs/videos#properties}{this link}
-#' *Properties:*
+#' **Properties:**
 #' * kind - Identifies the API resource's type. The value will be youtube#video.
 #' * etag - The Etag of this resource.
 #' * id - The ID that YouTube uses to uniquely identify the video.
