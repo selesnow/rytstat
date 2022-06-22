@@ -4,16 +4,103 @@
 \alias{ryt_get_channel_activities}
 \title{Returns a list of channel activity events}
 \usage{
-ryt_get_channel_activities(fields = c("contentDetails", "id", "snippet"))
+ryt_get_channel_activities(
+  part = c("contentDetails", "id", "snippet"),
+  fields = NULL
+)
 }
 \arguments{
-\item{fields}{Fields of channel metadata, see \href{https://developers.google.com/youtube/v3/docs/activities/list}{API documentation}.}
+\item{part}{The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include. See \href{https://developers.google.com/youtube/v3/docs/activities/list}{API documentation}.}
+
+\item{fields}{Fields of video metadata see \href{https://developers.google.com/youtube/v3/docs/activities#properties}{Properties}}
 }
 \value{
 tibble with channel activies
 }
 \description{
 Returns a list of channel activity events
+}
+\details{
+Parts and fields
+\strong{part:}
+\itemize{
+\item contentDetails
+\item id
+\item snippet
+}
+
+\strong{parts and fields details}
+\itemize{
+\item kind - Identifies the API resource's type.
+\item etag - The Etag of this resource.
+\item id - The ID that YouTube uses to uniquely identify the activity.
+\item snippet - The snippet object contains basic details about the activity, including the activity's type and group ID.
+\itemize{
+\item snippet.publishedAt - The date and time that the activity occurred.
+\item snippet.channelId - The ID that YouTube uses to uniquely identify the channel associated with the activity.
+\item snippet.title - The title of the resource primarily associated with the activity.
+\item snippet.description - The description of the resource primarily associated with the activity.
+\item snippet.thumbnails - A map of thumbnail images associated with the resource that is primarily associated with the activity.
+\item snippet.thumbnails.(key) - Valid key values are: default, medium, high, standard, maxres
+\item snippet.thumbnails.(key).url - The image's URL.
+\item snippet.thumbnails.(key).width - The image's width.
+\item snippet.thumbnails.(key).height - The image's height.
+\item snippet.channelTitle - Channel title for the channel responsible for this activity
+\item snippet.type - The type of activity that the resource describes.
+\item snippet.groupId - The group ID associated with the activity.
+}
+\item contentDetails - The contentDetails object contains information about the content associated with the activity.
+\itemize{
+\item contentDetails.upload - The upload object contains information about the uploaded video.
+\item contentDetails.upload.videoId - The ID that YouTube uses to uniquely identify the uploaded video.
+\item contentDetails.like - The like object contains information about a resource that received a positive (like) rating.
+\item contentDetails.like.resourceId - The resourceId object contains information that identifies the rated resource.
+\item contentDetails.like.resourceId.kind - The type of the API resource.
+\item contentDetails.like.resourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the rated resource is a video.
+\item contentDetails.favorite - The favorite object contains information about a video that was marked as a favorite video.
+\item contentDetails.favorite.resourceId - The resourceId object contains information that identifies the resource that was marked as a favorite.
+\item contentDetails.favorite.resourceId.kind - The type of the API resource.
+\item contentDetails.favorite.resourceId.videoId - The ID that YouTube uses to uniquely identify the favorite video.
+\item contentDetails.comment - The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment.
+\item contentDetails.comment.resourceId - The resourceId object contains information that identifies the resource associated with the comment.
+\item contentDetails.comment.resourceId.kind - The type of the API resource.
+\item contentDetails.comment.resourceId.videoId - The ID that YouTube uses to uniquely identify the video associated with a comment.
+\item contentDetails.comment.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel associated with a comment.
+\item contentDetails.subscription - The subscription object contains information about a channel that a user subscribed to.
+\item contentDetails.subscription.resourceId - The resourceId object contains information that identifies the resource that the user subscribed to.
+\item contentDetails.subscription.resourceId.kind - The type of the API resource.
+\item contentDetails.subscription.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel that the user subscribed to.
+\item contentDetails.playlistItem - The playlistItem object contains information about a new playlist item.
+\item contentDetails.playlistItem.resourceId - The resourceId object contains information that identifies the resource that was added to the playlist.
+\item contentDetails.playlistItem.resourceId.kind - The type of the API resource.
+\item contentDetails.playlistItem.resourceId.videoId - The ID that YouTube uses to uniquely identify the video that was added to the playlist. This property is only present if the resourceId.kind is youtube#video.
+\item contentDetails.playlistItem.playlistId - The value that YouTube uses to uniquely identify the playlist.
+\item contentDetails.playlistItem.playlistItemId - The value that YouTube uses to uniquely identify the item in the playlist.
+\item contentDetails.recommendation - The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation.
+\item contentDetails.recommendation.resourceId - The resourceId object contains information that identifies the recommended resource.
+\item contentDetails.recommendation.resourceId.kind - The type of the API resource.
+\item contentDetails.recommendation.resourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the recommended resource is a video.
+\item contentDetails.recommendation.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel, if the recommended resource is a channel.
+\item contentDetails.recommendation.reason - The reason that the resource is recommended to the user.
+\item contentDetails.recommendation.seedResourceId - The seedResourceId object contains information about the resource that caused the recommendation.
+\item contentDetails.recommendation.seedResourceId.kind - The type of the API resource.
+\item contentDetails.recommendation.seedResourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the recommendation was caused by a particular video.
+\item contentDetails.recommendation.seedResourceId.channelId - The ID that YouTube uses to uniquely identify the channel, if the recommendation was caused by a particular channel.
+\item contentDetails.recommendation.seedResourceId.playlistId - The ID that YouTube uses to uniquely identify the playlist, if the recommendation was caused by a particular playlist.
+\item contentDetails.social - The social object contains details about a social network post.
+\item contentDetails.social.type - The name of the social network.
+\item contentDetails.social.resourceId - The resourceId object encapsulates information that identifies the resource associated with a social network post.
+\item contentDetails.social.resourceId.kind - The type of the API resource.
+\item contentDetails.social.resourceId.videoId - The ID that YouTube uses to uniquely identify the video featured in a social network post, if the post refers to a video.
+\item contentDetails.social.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel featured in a social network post, if the post refers to a channel. This property will only be present if the value of the social.
+\item contentDetails.social.resourceId.playlistId - The ID that YouTube uses to uniquely identify the playlist featured in a social network post, if the post refers to a playlist.
+\item contentDetails.social.author - The author of the social network post.
+\item contentDetails.social.referenceUrl - The URL of the social network post.
+\item contentDetails.social.imageUrl - An image of the post's author.
+\item contentDetails.channelItem - The channelItem object contains details about a resource that was added to a channel.
+\item contentDetails.channelItem.resourceId - The resourceId object contains information that identifies the resource that was added to the channel.
+}
+}
 }
 \examples{
 \dontrun{

@@ -29,7 +29,7 @@ tibble with video details
 Get detail data of your videos on 'YouTube'
 }
 \details{
-For get more information about videos parts and fields go \href{this link}{https://developers.google.com/youtube/v3/docs/videos#properties}
+For get more information about videos parts and fields go \href{https://developers.google.com/youtube/v3/docs/videos#properties}{this link}
 \emph{Properties:}
 \itemize{
 \item kind - Identifies the API resource's type. The value will be youtube#video.
