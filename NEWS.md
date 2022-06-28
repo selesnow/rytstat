@@ -4,7 +4,7 @@
 * В пакет добавлена функция `ryt_search()`, предназначенная для поиска видео, плей листов и каналов, не обязательно вашего авторства.
 
 ## Основное
-* В функциях `ryt_get_video_details()`, `ryt_get_playlists()`, `ryt_get_channel_activities()` и `ryt_get_playlist_items()` аргумент `fields` переименован в `part`, и добавлен аргумент `fields`, который позволяет запрашивать отдельные поля частей запроса. Примеры работы с новыми аргументами добавлены в справку функции.
+* В функциях `ryt_get_video_details()`, `ryt_get_playlists()`, `ryt_get_channel_activities()`, `ryt_get_channels()` и `ryt_get_playlist_items()` аргумент `fields` переименован в `part`, и добавлен аргумент `fields`, который позволяет запрашивать отдельные поля частей запроса. Примеры работы с новыми аргументами добавлены в справку функции.
 
 ## Документация
 * Расширена документации функций `ryt_get_video_details()`, `ryt_get_playlists()`, `ryt_get_channel_activities()` и `ryt_get_playlist_items()` в неё добавлены примеры с использованием аргумента `fields`, и добавлен перечень частей (parts) и полей (fields).

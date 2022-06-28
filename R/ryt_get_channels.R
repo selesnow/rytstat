@@ -1,5 +1,6 @@
 #' Get channel info from 'YouTube API'
 #'
+#' @param part The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. Allowed values: contentDetails, id, snippet, statistics, status, topicDetails
 #' @param fields Fields of channel metadata, see \href{https://developers.google.com/youtube/v3/docs/channels/list}{API documentation}.
 #'
 #' @return tibble with channel metadata
