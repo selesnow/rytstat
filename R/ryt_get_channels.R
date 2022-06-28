@@ -11,19 +11,21 @@
 #'
 #' }
 ryt_get_channels <- function(
-  fields = c('contentDetails',
+    part = c('contentDetails',
              'id',
              'snippet',
              'statistics',
              'status',
-             'topicDetails')
+             'topicDetails'),
+    fields = NULL
 ) {
 
   cli_alert_info('Compose params')
 
   q_params <- list(
-    mine = TRUE,
-    part = paste0(fields, collapse = ","),
+    mine       = TRUE,
+    part       = paste0(part, collapse = ","),
+    fields     = fields,
     maxResults = 5
   )
 
@@ -54,8 +56,8 @@ ryt_get_channels <- function(
 
   cli_alert_info('Parse result')
   result <- tibble(items = result) %>%
-    unnest_longer(.data$items) %>%
-    unnest_wider(.data$items)
+            unnest_longer(.data$items) %>%
+            unnest_wider(.data$items)
 
   if ( 'snippet' %in%  fields )         result <- unnest_wider(result, .data$snippet)
   if ( 'contentDetails' %in%  fields )  result <- unnest_wider(result, .data$contentDetails)

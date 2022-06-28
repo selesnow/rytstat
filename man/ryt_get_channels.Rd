@@ -5,7 +5,8 @@
 \title{Get channel info from 'YouTube API'}
 \usage{
 ryt_get_channels(
-  fields = c("contentDetails", "id", "snippet", "statistics", "status", "topicDetails")
+  part = c("contentDetails", "id", "snippet", "statistics", "status", "topicDetails"),
+  fields = NULL
 )
 }
 \arguments{
