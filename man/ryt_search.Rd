@@ -9,7 +9,7 @@ ryt_search(part = "snippet", ...)
 \arguments{
 \item{part}{The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.}
 
-\item{...}{Filters and Optional parameters for resources search. See \href{https://developers.google.com/youtube/v3/docs/search/list#parameters}{list of all allowed params}. You can names in came or snake case it.}
+\item{...}{Filters and Optional parameters for resources search. See \href{https://developers.google.com/youtube/v3/docs/search/list#parameters}{list of all allowed params}. You can set params names in came or snake case.}
 }
 \value{
 resources list
@@ -19,12 +19,30 @@ Returns a collection of search results that match the query parameters specified
 }
 \examples{
 \dontrun{
-search_res <- ryt_search(
-    type            = 'video',
-    part            = 'statistics,snippet',
-    q               = 'r language tutorial',
-    published_after = '2022-03-01T00:00:00Z',
-    max_results     = 10
+# search
+search_res_videos <- ryt_search(
+  type            = 'video',
+  q               = 'r language tutorial',
+  published_after = '2022-03-01T00:00:00Z',
+  published_before = '2022-06-01T00:00:00Z',
+  max_results     = 10
+)
+
+search_res_playlists <- ryt_search(
+  type             = 'playlist',
+  q                = 'r language tutorial',
+  published_after  = '2022-03-01T00:00:00Z',
+  published_before = '2022-06-01T00:00:00Z',
+  max_results      = 50
+)
+
+search_res_channels <- ryt_search(
+type             = 'channel',
+q                = 'r language tutorial',
+published_after  = '2022-03-01T00:00:00Z',
+  published_before = '2022-06-01T00:00:00Z',
+  max_results      = 50
+)
 )
 }
 }

@@ -1,19 +1,37 @@
 #' Search channels, playlists or videos on YouTube
 #' @description Returns a collection of search results that match the query parameters specified in the API request. By default, a search result set identifies matching video, channel, and playlist resources, but you can also configure queries to only retrieve a specific type of resource.
 #' @param part The part parameter specifies a comma-separated list of one or more search resource properties that the API response will include. Set the parameter value to snippet.
-#' @param ... Filters and Optional parameters for resources search. See [list of all allowed params](https://developers.google.com/youtube/v3/docs/search/list#parameters). You can names in came or snake case it.
+#' @param ... Filters and Optional parameters for resources search. See [list of all allowed params](https://developers.google.com/youtube/v3/docs/search/list#parameters). You can set params names in came or snake case.
 #'
 #' @return resources list
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' search_res <- ryt_search(
-#'     type            = 'video',
-#'     part            = 'statistics,snippet',
-#'     q               = 'r language tutorial',
-#'     published_after = '2022-03-01T00:00:00Z',
-#'     max_results     = 10
+#' # search
+#' search_res_videos <- ryt_search(
+#'   type            = 'video',
+#'   q               = 'r language tutorial',
+#'   published_after = '2022-03-01T00:00:00Z',
+#'   published_before = '2022-06-01T00:00:00Z',
+#'   max_results     = 10
+#' )
+#'
+#' search_res_playlists <- ryt_search(
+#'   type             = 'playlist',
+#'   q                = 'r language tutorial',
+#'   published_after  = '2022-03-01T00:00:00Z',
+#'   published_before = '2022-06-01T00:00:00Z',
+#'   max_results      = 50
+#' )
+#'
+#' search_res_channels <- ryt_search(
+#' type             = 'channel',
+#' q                = 'r language tutorial',
+#' published_after  = '2022-03-01T00:00:00Z',
+#'   published_before = '2022-06-01T00:00:00Z',
+#'   max_results      = 50
+#' )
 #' )
 #' }
 ryt_search <- function(
@@ -77,7 +95,7 @@ ryt_search <- function(
     }
 
     nested_fields <- select(result, where(is.list)) %>%
-      names()
+                     names()
 
     nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
 

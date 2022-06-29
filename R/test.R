@@ -39,6 +39,39 @@ if (FALSE) {
   # get list of your videos
   videos <- ryt_get_videos()
 
+  # search
+  search_res_videos <- ryt_search(
+        type            = 'video',
+        q               = 'r language tutorial',
+        published_after = '2022-03-01T00:00:00Z',
+        published_before = '2022-06-01T00:00:00Z',
+        max_results     = 10
+    )
+
+  search_res_playlists <- ryt_search(
+    type             = 'playlist',
+    q                = 'r language tutorial',
+    published_after  = '2022-03-01T00:00:00Z',
+    published_before = '2022-06-01T00:00:00Z',
+    max_results      = 50
+  )
+
+  search_res_channels <- ryt_search(
+    type             = 'channel',
+    q                = 'r language tutorial',
+    published_after  = '2022-03-01T00:00:00Z',
+    published_before = '2022-06-01T00:00:00Z',
+    max_results      = 50
+  )
+
+  search_my_videos <- ryt_search(
+    type             = 'video',
+    for_mine         = TRUE,
+    #published_after  = '2022-03-01T00:00:00Z',
+    #published_before = '2022-06-01T00:00:00Z',
+    max_results      = 50
+  )
+
   # function for loading video stat
   get_videos_stat <- function(video_id) {
 
