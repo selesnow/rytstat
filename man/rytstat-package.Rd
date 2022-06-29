@@ -6,9 +6,9 @@
 \alias{rytstat-package}
 \title{rytstat: Work with 'YouTube API'}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Provide function for get data from 'YouTube Data API' \url{https://developers.google.com/youtube/v3/docs/}, 'YouTube Analytics API' \url{https://developers.google.com/youtube/analytics/reference/} and 'YouTube Reporting API' \url{https://developers.google.com/youtube/reporting/v1/reports}.
+Provide function for get data from 'YouTube Data API' <https://developers.google.com/youtube/v3/docs/>, 'YouTube Analytics API' <https://developers.google.com/youtube/analytics/reference/> and 'YouTube Reporting API' <https://developers.google.com/youtube/reporting/v1/reports>.
 }
 \seealso{
 Useful links:

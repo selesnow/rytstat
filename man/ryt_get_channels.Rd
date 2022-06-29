@@ -10,15 +10,114 @@ ryt_get_channels(
 )
 }
 \arguments{
-\item{part}{The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include. Allowed values: contentDetails, id, snippet, statistics, status, topicDetails}
+\item{part}{The part parameter specifies a comma-separated list of one or more channel resource properties that the API response will include., see \href{https://developers.google.com/youtube/v3/docs/channels/list}{API documentation}.}
 
-\item{fields}{Fields of channel metadata, see \href{https://developers.google.com/youtube/v3/docs/channels/list}{API documentation}.}
+\item{fields}{Allows you to specify individual nested part fields}
 }
 \value{
 tibble with channel metadata
 }
 \description{
 Get channel info from 'YouTube API'
+}
+\details{
+Parts and fields
+\strong{part:}
+\itemize{
+\item auditDetails
+\item brandingSettings
+\item contentDetails
+\item contentOwnerDetails
+\item id
+\item localizations
+\item snippet
+\item statistics
+\item status
+\item topicDetails
+}
+
+\strong{parts and fields details}
+\itemize{
+\item kind - Identifies the API resource's type.
+\item etag - The Etag of this resource.
+\item id - The ID that YouTube uses to uniquely identify the channel.
+\item snippet - The snippet object contains basic details about the channel, such as its title, description, and thumbnail images.
+\itemize{
+\item snippet.title - The channel's title.
+\item snippet.description - The channel's description. The property's value has a maximum length of 1000 characters.
+\item snippet.customUrl - The channel's custom URL. The YouTube Help Center explains eligibility requirements for getting a custom URL as well as how to set up the URL.
+\item snippet.publishedAt - The date and time that the channel was created. The value is specified in ISO 8601 format.
+\item snippet.thumbnails - A map of thumbnail images associated with the channel. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail.
+\item snippet.thumbnails.(key) - Valid key values are: default, medium, high.
+\item snippet.thumbnails.(key).url - The image's URL. See the snippet.thumbnails property definition for additional guidelines on using thumbnail URLs in your application.
+\item snippet.thumbnails.(key).width - The image's width.
+\item snippet.thumbnails.(key).height - The image's height.
+\item snippet.defaultLanguage - The language of the text in the channel resource's snippet.title and snippet.description properties.
+\item snippet.localized - The snippet.localized object contains a localized title and description for the channel or it contains the channel's title and description in the default language for the channel's metadata.
+\item snippet.localized.title - The localized channel title.
+\item snippet.localized.description - The localized channel description.
+\item snippet.country - The country with which the channel is associated.
+}
+\item contentDetails - The contentDetails object encapsulates information about the channel's content.
+\itemize{
+\item contentDetails.relatedPlaylists - The relatedPlaylists object is a map that identifies playlists associated with the channel, such as the channel's uploaded videos or liked videos.
+\item contentDetails.relatedPlaylists.likes - The ID of the playlist that contains the channel's liked videos.
+\item contentDetails.relatedPlaylists.uploads - The ID of the playlist that contains the channel's uploaded videos.
+}
+\item statistics - The statistics object encapsulates statistics for the channel.
+\itemize{
+\item statistics.viewCount - The number of times the channel has been viewed.
+\item statistics.subscriberCount - The number of subscribers that the channel has.
+\item statistics.hiddenSubscriberCount - Indicates whether the channel's subscriber count is publicly visible.
+\item statistics.videoCount - The number of public videos uploaded to the channel.
+}
+\item topicDetails - The topicDetails object encapsulates information about topics associated with the channel.
+\itemize{
+\item topicDetails.topicIds[] - A list of topic IDs associated with the channel.
+\item topicDetails.topicCategories[] - A list of Wikipedia URLs that describe the channel's content.
+}
+\item status - The status object encapsulates information about the privacy status of the channel.
+\itemize{
+\item status.privacyStatus - Privacy status of the channel.
+\item status.isLinked - Indicates whether the channel data identifies a user that is already linked to either a YouTube username or a Google+ account.
+\item status.longUploadsStatus - Indicates whether the channel is eligible to upload videos that are more than 15 minutes long.
+\item status.madeForKids - This value indicates whether the channel is designated as child-directed, and it contains the current "made for kids" status of the channel.
+\item status.selfDeclaredMadeForKids - In a channels.update request, this property allows the channel owner to designate the channel as child-directed.
+}
+\item brandingSettings - The brandingSettings object encapsulates information about the branding of the channel.
+\itemize{
+\item brandingSettings.channel - The channel object encapsulates branding properties of the channel page.
+\item brandingSettings.channel.title - The channel's title. The title has a maximum length of 30 characters.
+\item brandingSettings.channel.description - The channel description, which appears in the channel information box on your channel page. The property's value has a maximum length of 1000 characters.
+\item brandingSettings.channel.keywords - Keywords associated with your channel.
+\item brandingSettings.channel.trackingAnalyticsAccountId - The ID for a Google Analytics account that you want to use to track and measure traffic to your channel.
+\item brandingSettings.channel.moderateComments - This setting determines whether user-submitted comments left on the channel page need to be approved by the channel owner to be publicly visible.
+\item brandingSettings.channel.unsubscribedTrailer - The video that should play in the featured video module in the channel page's browse view for unsubscribed viewers.
+\item brandingSettings.channel.defaultLanguage - The language of the text in the channel resource's snippet.title and snippet.description properties.
+\item brandingSettings.channel.country - The country with which the channel is associated. Update this property to set the value of the snippet.country property.
+\item brandingSettings.watch - The watch object encapsulates branding properties of the watch pages for the channel's videos.
+\item brandingSettings.watch.textColor - The text color for the video watch page's branded area.
+\item brandingSettings.watch.backgroundColor - The background color for the video watch page's branded area.
+}
+\item auditDetails - The auditDetails object encapsulates channel data that a multichannel network (MCN) would evaluate while determining whether to accept or reject a particular channel.
+\itemize{
+\item auditDetails.overallGoodStanding - This field indicates whether there are any issues with the channel. Currently, this field represents the result of the logical AND operation over the communityGuidelinesGoodStanding, copyrightStrikesGoodStanding, and contentIdClaimsGoodStanding properties, meaning that this property has a value of true if all of those other properties also have a value of true.
+\item auditDetails.communityGuidelinesGoodStanding - Indicates whether the channel respects YouTube's community guidelines.
+\item auditDetails.copyrightStrikesGoodStanding - Indicates whether the channel has any copyright strikes.
+\item auditDetails.contentIdClaimsGoodStanding - Indicates whether the channel has any unresolved claims.
+}
+\item contentOwnerDetails - The contentOwnerDetails object encapsulates channel data that is relevant for YouTube Partners linked with the channel.
+\itemize{
+\item contentOwnerDetails.contentOwner - The ID of the content owner linked to the channel.
+\item contentOwnerDetails.timeLinked - The date and time of when the channel was linked to the content owner. The value is specified in ISO 8601 format.
+}
+\item localizations - The localizations object encapsulates translations of the channel's metadata.
+\itemize{
+\item localizations.(key) - The language of the localized metadata associated with the key value.
+\item localizations.(key).title - The localized channel title.
+\item localizations.(key).description - The localized channel description.
+}
+}
 }
 \examples{
 \dontrun{
