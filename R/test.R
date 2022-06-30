@@ -67,11 +67,31 @@ if (FALSE) {
   search_my_videos <- ryt_search(
     type             = 'video',
     for_mine         = TRUE,
-    #published_after  = '2022-03-01T00:00:00Z',
-    #published_before = '2022-06-01T00:00:00Z',
     max_results      = 50
   )
 
+  search_own_dplyr_videos <- ryt_search(
+    type             = 'video',
+    for_mine         = TRUE,
+    q                = 'dplyr'
+  )
+
+  # search channel id by name
+  search_chn <-  ryt_search(
+    type   = 'channel',
+    q      = 'R4marketing',
+    fields = 'items(snippet(title,channelId))'
+  )
+
+  # Search videos in the channel
+  search_channel_dplyr_videos <- ryt_search(
+    type       = 'video',
+    q          = 'dplyr',
+    channel_id = "UCyHC6R3mCCP8bhD9tPbjnzQ"
+  )
+
+
+ryt_get_channels()$id
   # function for loading video stat
   get_videos_stat <- function(video_id) {
 

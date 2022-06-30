@@ -38,6 +38,7 @@ reference:
       - ryt_get_video_details
       - ryt_get_playlists
       - ryt_get_comments
+      - ryt_search
   - title: YouTube Analytics API
     desc: >
       Work with YouTube Analytics API <https://developers.google.com/youtube/analytics/data_model>

@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' # search
+#' # search videos by query
 #' search_res_videos <- ryt_search(
 #'   type            = 'video',
 #'   q               = 'r language tutorial',
@@ -17,6 +17,7 @@
 #'   max_results     = 10
 #' )
 #'
+#' # search playlists by query
 #' search_res_playlists <- ryt_search(
 #'   type             = 'playlist',
 #'   q                = 'r language tutorial',
@@ -25,6 +26,7 @@
 #'   max_results      = 50
 #' )
 #'
+#' # search channel by query
 #' search_res_channels <- ryt_search(
 #' type             = 'channel',
 #' q                = 'r language tutorial',
@@ -32,6 +34,26 @@
 #'   published_before = '2022-06-01T00:00:00Z',
 #'   max_results      = 50
 #' )
+#'
+#' # Search in own videos
+#' search_own_dplyr_videos <- ryt_search(
+#'   type             = 'video',
+#'   for_mine         = TRUE,
+#'   q                = 'dplyr'
+#' )
+#'
+#' # Search channels and get title and id
+#' search_chn <-  ryt_search(
+#'    type   = 'channel',
+#'    q      = 'R4marketing',
+#'    fields = 'items(snippet(title,channelId))'
+#' )
+#'
+#' # Search videos in the channel by query and channel id
+#' search_channel_dplyr_videos <- ryt_search(
+#'   type       = 'video',
+#'   q          = 'dplyr',
+#'   channel_id = "UCyHC6R3mCCP8bhD9tPbjnzQ"
 #' )
 #' }
 ryt_search <- function(
@@ -46,8 +68,8 @@ ryt_search <- function(
   result <- list()
 
   cli_alert_info('Send query')
-  while (!is.null(q_params$pageToken)|!exists('resp', inherits = FALSE)) {
 
+  while (!is.null(q_params$pageToken)|!exists('resp', inherits = FALSE)) {
 
     out <- request_build(
       method   = "GET",
@@ -72,7 +94,8 @@ ryt_search <- function(
   }
 
   cli_alert_info('Parse result')
-  result <- tibble(items = resp$items) %>%
+  result <- tibble(items = result) %>%
+            unnest_longer(.data$items) %>%
             unnest_wider(.data$items)
 
   nested_fields <- select(result, where(is.list)) %>% names()
@@ -84,10 +107,10 @@ ryt_search <- function(
 
       if (col == "tags") next
 
-      result_t <- try(unnest_wider(result, col), silent = T)
+      result_t <- try(unnest_wider(result, any_of(col)), silent = T)
 
       if ( 'try-error' %in% class(result_t) ) {
-        result <- unnest_wider(result, col, names_sep = '_')
+        result <- unnest_wider(result, any_of(col), names_sep = '_')
       } else {
         result <- result_t
       }

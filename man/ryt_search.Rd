@@ -19,7 +19,7 @@ Returns a collection of search results that match the query parameters specified
 }
 \examples{
 \dontrun{
-# search
+# search videos by query
 search_res_videos <- ryt_search(
   type            = 'video',
   q               = 'r language tutorial',
@@ -28,6 +28,7 @@ search_res_videos <- ryt_search(
   max_results     = 10
 )
 
+# search playlists by query
 search_res_playlists <- ryt_search(
   type             = 'playlist',
   q                = 'r language tutorial',
@@ -36,6 +37,7 @@ search_res_playlists <- ryt_search(
   max_results      = 50
 )
 
+# search channel by query
 search_res_channels <- ryt_search(
 type             = 'channel',
 q                = 'r language tutorial',
@@ -43,6 +45,26 @@ published_after  = '2022-03-01T00:00:00Z',
   published_before = '2022-06-01T00:00:00Z',
   max_results      = 50
 )
+
+# Search in own videos
+search_own_dplyr_videos <- ryt_search(
+  type             = 'video',
+  for_mine         = TRUE,
+  q                = 'dplyr'
+)
+
+# Search channels and get title and id
+search_chn <-  ryt_search(
+   type   = 'channel',
+   q      = 'R4marketing',
+   fields = 'items(snippet(title,channelId))'
+)
+
+# Search videos in the channel by query and channel id
+search_channel_dplyr_videos <- ryt_search(
+  type       = 'video',
+  q          = 'dplyr',
+  channel_id = "UCyHC6R3mCCP8bhD9tPbjnzQ"
 )
 }
 }
