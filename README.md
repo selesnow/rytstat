@@ -72,7 +72,7 @@ ryt_auth('me@gmail.com')
 
 ## Install
 
-You can instal `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnpw/rytstat):
+You can install `rytstat` from [CRAN](https://cran.r-project.org/package=rytstat) or [GitHub](https://github.com/selesnow/rytstat):
 
 ``` r
 install.packages("rytstat")
@@ -101,12 +101,54 @@ ryt_auth_configure(app = app)
 
 ryt_auth(email = 'me@gmail.com')
 
-# load videos
-videos <- ryt_get_video_list()
 
 ```
 
-## Using YouTube Analytics API
+### Using YouTube Data API
+
+``` r
+# load channel data
+channel <- ryt_get_channels()
+
+# load videos
+videos <- ryt_get_video_list()
+video_details <- ryt_get_video_details(video_id = videos$id_video_id)
+
+# load playlists
+pl <- ryt_get_playlists()
+pl_items <- ryt_get_playlist_items(
+     playlist_id = pl$id[1],
+     part = c('contentDetails', 'snippet'),
+     fields = 'items(id,snippet/channelId,snippet/title,contentDetails/videoId)'
+)
+
+# search channels, playlists or videos
+search_res_videos <- ryt_search(
+    type            = 'video',
+    q               = 'r language tutorial',
+    published_after = '2022-03-01T00:00:00Z',
+    published_before = '2022-06-01T00:00:00Z',
+    max_results     = 10 
+)
+
+search_res_playlists <- ryt_search(
+    type             = 'playlist',
+    q                = 'r language tutorial',
+    published_after  = '2022-03-01T00:00:00Z',
+    published_before = '2022-06-01T00:00:00Z',
+    max_results      = 50
+)
+
+search_res_channels <- ryt_search(
+    type             = 'channel',
+    q                = 'r language tutorial',
+    published_after  = '2022-03-01T00:00:00Z',
+    published_before = '2022-06-01T00:00:00Z',
+    max_results      = 50
+)
+```
+
+### Using YouTube Analytics API
 
 
 ``` r
@@ -131,7 +173,7 @@ video_stat <- ryt_get_analytics(
 
 ```
 
-## Using YouTube Reporting API
+### Using YouTube Reporting API
 
 ```r
 # auth
@@ -139,7 +181,7 @@ ryt_auth('me@gmail.com')
 
 # get reporting data
 ## create job
-ryt_reports_create_job('channel_basic_a2')
+ryt_create_job('channel_basic_a2')
 
 ## get job list
 jobs2 <- ryt_get_job_list()
@@ -160,8 +202,8 @@ ryt_delete_job(jobs$id[1])
 ```
 
 ## Author
-Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net)
-<Br>Telegram Channel: [R4marketing](http://t.me/R4marketing)
+Alexey Seleznev, Head of analytics dept. at [Netpeak](https://netpeak.net/en/us/)
+<Br>Telegram Channel: [R4marketing](https://t.me/R4marketing)
 <Br>YouTube Channel: [R4marketing](https://www.youtube.com/R4marketing/?sub_confirmation=1)
 <Br>email: selesnow@gmail.com
 <Br>facebook: [facebook.com/selesnow](https://www.facebook.com/selesnow)
