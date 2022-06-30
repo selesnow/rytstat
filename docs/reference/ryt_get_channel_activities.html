@@ -16,14 +16,14 @@
     
     <a class="navbar-brand me-2" href="../index.html">rytstat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
@@ -57,18 +57,95 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ryt_get_channel_activities</span><span class="op">(</span>fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"snippet"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ryt_get_channel_activities</span><span class="op">(</span>
+  part <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"contentDetails"</span>, <span class="st">"id"</span>, <span class="st">"snippet"</span><span class="op">)</span>,
+  fields <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>fields</dt>
-<dd><p>Fields of channel metadata, see <a href="https://developers.google.com/youtube/v3/docs/activities/list" class="external-link">API documentation</a>.</p></dd>
+    <dl><dt>part</dt>
+<dd><p>The part parameter specifies a comma-separated list of one or more activity resource properties that the API response will include. See <a href="https://developers.google.com/youtube/v3/docs/activities/list" class="external-link">API documentation</a>.</p></dd>
+<dt>fields</dt>
+<dd><p>Fields of video metadata see <a href="https://developers.google.com/youtube/v3/docs/activities#properties" class="external-link">Properties</a></p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>tibble with channel activies</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Parts and fields
+<strong>part:</strong></p><ul><li><p>contentDetails</p></li>
+<li><p>id</p></li>
+<li><p>snippet</p></li>
+</ul><p><strong>parts and fields details</strong></p><ul><li><p>kind - Identifies the API resource's type.</p></li>
+<li><p>etag - The Etag of this resource.</p></li>
+<li><p>id - The ID that YouTube uses to uniquely identify the activity.</p></li>
+<li><p>snippet - The snippet object contains basic details about the activity, including the activity's type and group ID.</p><ul><li><p>snippet.publishedAt - The date and time that the activity occurred.</p></li>
+<li><p>snippet.channelId - The ID that YouTube uses to uniquely identify the channel associated with the activity.</p></li>
+<li><p>snippet.title - The title of the resource primarily associated with the activity.</p></li>
+<li><p>snippet.description - The description of the resource primarily associated with the activity.</p></li>
+<li><p>snippet.thumbnails - A map of thumbnail images associated with the resource that is primarily associated with the activity.</p></li>
+<li><p>snippet.thumbnails.(key) - Valid key values are: default, medium, high, standard, maxres</p></li>
+<li><p>snippet.thumbnails.(key).url - The image's URL.</p></li>
+<li><p>snippet.thumbnails.(key).width - The image's width.</p></li>
+<li><p>snippet.thumbnails.(key).height - The image's height.</p></li>
+<li><p>snippet.channelTitle - Channel title for the channel responsible for this activity</p></li>
+<li><p>snippet.type - The type of activity that the resource describes.</p></li>
+<li><p>snippet.groupId - The group ID associated with the activity.</p></li>
+</ul></li>
+<li><p>contentDetails - The contentDetails object contains information about the content associated with the activity.</p><ul><li><p>contentDetails.upload - The upload object contains information about the uploaded video.</p></li>
+<li><p>contentDetails.upload.videoId - The ID that YouTube uses to uniquely identify the uploaded video.</p></li>
+<li><p>contentDetails.like - The like object contains information about a resource that received a positive (like) rating.</p></li>
+<li><p>contentDetails.like.resourceId - The resourceId object contains information that identifies the rated resource.</p></li>
+<li><p>contentDetails.like.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.like.resourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the rated resource is a video.</p></li>
+<li><p>contentDetails.favorite - The favorite object contains information about a video that was marked as a favorite video.</p></li>
+<li><p>contentDetails.favorite.resourceId - The resourceId object contains information that identifies the resource that was marked as a favorite.</p></li>
+<li><p>contentDetails.favorite.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.favorite.resourceId.videoId - The ID that YouTube uses to uniquely identify the favorite video.</p></li>
+<li><p>contentDetails.comment - The comment object contains information about a resource that received a comment. This property is only present if the snippet.type is comment.</p></li>
+<li><p>contentDetails.comment.resourceId - The resourceId object contains information that identifies the resource associated with the comment.</p></li>
+<li><p>contentDetails.comment.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.comment.resourceId.videoId - The ID that YouTube uses to uniquely identify the video associated with a comment.</p></li>
+<li><p>contentDetails.comment.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel associated with a comment.</p></li>
+<li><p>contentDetails.subscription - The subscription object contains information about a channel that a user subscribed to.</p></li>
+<li><p>contentDetails.subscription.resourceId - The resourceId object contains information that identifies the resource that the user subscribed to.</p></li>
+<li><p>contentDetails.subscription.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.subscription.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel that the user subscribed to.</p></li>
+<li><p>contentDetails.playlistItem - The playlistItem object contains information about a new playlist item.</p></li>
+<li><p>contentDetails.playlistItem.resourceId - The resourceId object contains information that identifies the resource that was added to the playlist.</p></li>
+<li><p>contentDetails.playlistItem.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.playlistItem.resourceId.videoId - The ID that YouTube uses to uniquely identify the video that was added to the playlist. This property is only present if the resourceId.kind is youtube#video.</p></li>
+<li><p>contentDetails.playlistItem.playlistId - The value that YouTube uses to uniquely identify the playlist.</p></li>
+<li><p>contentDetails.playlistItem.playlistItemId - The value that YouTube uses to uniquely identify the item in the playlist.</p></li>
+<li><p>contentDetails.recommendation - The recommendation object contains information about a recommended resource. This property is only present if the snippet.type is recommendation.</p></li>
+<li><p>contentDetails.recommendation.resourceId - The resourceId object contains information that identifies the recommended resource.</p></li>
+<li><p>contentDetails.recommendation.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.recommendation.resourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the recommended resource is a video.</p></li>
+<li><p>contentDetails.recommendation.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel, if the recommended resource is a channel.</p></li>
+<li><p>contentDetails.recommendation.reason - The reason that the resource is recommended to the user.</p></li>
+<li><p>contentDetails.recommendation.seedResourceId - The seedResourceId object contains information about the resource that caused the recommendation.</p></li>
+<li><p>contentDetails.recommendation.seedResourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.recommendation.seedResourceId.videoId - The ID that YouTube uses to uniquely identify the video, if the recommendation was caused by a particular video.</p></li>
+<li><p>contentDetails.recommendation.seedResourceId.channelId - The ID that YouTube uses to uniquely identify the channel, if the recommendation was caused by a particular channel.</p></li>
+<li><p>contentDetails.recommendation.seedResourceId.playlistId - The ID that YouTube uses to uniquely identify the playlist, if the recommendation was caused by a particular playlist.</p></li>
+<li><p>contentDetails.social - The social object contains details about a social network post.</p></li>
+<li><p>contentDetails.social.type - The name of the social network.</p></li>
+<li><p>contentDetails.social.resourceId - The resourceId object encapsulates information that identifies the resource associated with a social network post.</p></li>
+<li><p>contentDetails.social.resourceId.kind - The type of the API resource.</p></li>
+<li><p>contentDetails.social.resourceId.videoId - The ID that YouTube uses to uniquely identify the video featured in a social network post, if the post refers to a video.</p></li>
+<li><p>contentDetails.social.resourceId.channelId - The ID that YouTube uses to uniquely identify the channel featured in a social network post, if the post refers to a channel. This property will only be present if the value of the social.</p></li>
+<li><p>contentDetails.social.resourceId.playlistId - The ID that YouTube uses to uniquely identify the playlist featured in a social network post, if the post refers to a playlist.</p></li>
+<li><p>contentDetails.social.author - The author of the social network post.</p></li>
+<li><p>contentDetails.social.referenceUrl - The URL of the social network post.</p></li>
+<li><p>contentDetails.social.imageUrl - An image of the post's author.</p></li>
+<li><p>contentDetails.channelItem - The channelItem object contains details about a resource that was added to a channel.</p></li>
+<li><p>contentDetails.channelItem.resourceId - The resourceId object contains information that identifies the resource that was added to the channel.</p></li>
+</ul></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -88,7 +165,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer></div>
