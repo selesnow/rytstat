@@ -169,8 +169,11 @@ ryt_get_report_list <- function(
   ) {
 
   q_params <- list(
-
+    createdAfter = created_after,
+    startTimeAtOrAfter = start_time_at_or_after,
+    startTimeBefore = start_time_before
   )
+
   result   <- list()
 
   while (!is.null(q_params$pageToken)|!exists('resp', inherits = FALSE)) {

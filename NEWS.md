@@ -15,7 +15,9 @@
     sort = '-views', 
     max_results = 10
   )
+  
 ```
+* Исправлена ошибка в функции `ryt_get_report_list()`, изза которой не работали аргументы `created_after`, `start_time_at_or_after`, `start_time_before`.
 
 # rytstat 0.3.0
 

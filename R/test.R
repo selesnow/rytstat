@@ -25,7 +25,7 @@ if (FALSE) {
   channel <- ryt_get_channels()
   ryt_open_auth_cache_folder()
   ryt_auth(email = 'selesnow@gmail.com')
-  videos <- ryt_get_videos()
+  videos <- ryt_get_videos(fields = 'items(snippet/title)')
 
   video_details <- ryt_get_video_details(video_id = videos$id_video_id)
 
