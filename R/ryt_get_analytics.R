@@ -5,6 +5,9 @@
 #' @param metrics Character vector of YouTube Analytics metrics, such as views or likes,dislikes. See the \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports or a list of the reports that you can retrieve and the metrics available in each report. The \href{https://developers.google.com/youtube/analytics/metrics}{Metrics document} contains definitions for all of the metrics.
 #' @param dimensions Character vector of YouTube Analytics dimensions, such as video or ageGroup,gender. The \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} contains definitions for all of the dimensions.
 #' @param filters Character vector of filters that should be applied when retrieving YouTube Analytics data. The \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports reports identifies the dimensions that can be used to filter each report, and the \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} defines those dimensions.
+#' @param sort Character vector of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The - prefix causes descending sort order.
+#' @param max_results The maximum number of rows to include in the response.
+#' @param start_index The 1-based index of the first entity to retrieve. (The default value is 1.) Use this parameter as a pagination mechanism along with the max_results parameter.
 #'
 #' @return tibble with analytics data
 #' @export
@@ -53,22 +56,30 @@ ryt_get_analytics <- function(
               'averageViewDuration',
               'averageViewPercentage',
               'subscribersGained'),
-  dimensions = 'day',
-  filters = NULL
+  dimensions  = 'day',
+  filters     = NULL,
+  sort        = NULL,
+  max_results = NULL,
+  start_index = NULL
 ) {
 
   cli_alert_info('Compose params')
   metrics <- paste0(metrics, collapse = ',')
   dimensions <- paste0(dimensions, collapse = ',')
 
+  if ( !is.null(sort) ) sort <- paste0(sort, collapse = ',')
+
   out <- request_build(
     method   = "GET",
-    params   = list(startDate = start_date,
-                    endDate = end_date,
-                    ids = 'channel==MINE',
+    params   = list(startDate  = start_date,
+                    endDate    = end_date,
+                    ids        = 'channel==MINE',
                     dimensions = dimensions,
-                    filters = filters,
-                    metrics = metrics),
+                    filters    = filters,
+                    metrics    = metrics,
+                    sort       = sort,
+                    maxResults = max_results,
+                    startIndex = start_index),
     token    = ryt_token(),
     path     = 'v2/reports',
     base_url = 'https://youtubeanalytics.googleapis.com/'

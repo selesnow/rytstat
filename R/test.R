@@ -33,6 +33,15 @@ if (FALSE) {
 
   pl <- ryt_get_playlists()
 
+  # top video
+  top_10_by_view <- ryt_get_analytics(
+    '2022-06-01', '2022-06-30',
+    metrics = 'views',
+    dimensions = 'video',
+    sort = '-views',
+    max_results = 10
+  )
+
   # auth
   ryt_auth('selesnow@gmail.com')
 

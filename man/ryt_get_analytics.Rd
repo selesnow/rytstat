@@ -10,7 +10,10 @@ ryt_get_analytics(
   metrics = c("views", "estimatedMinutesWatched", "averageViewDuration",
     "averageViewPercentage", "subscribersGained"),
   dimensions = "day",
-  filters = NULL
+  filters = NULL,
+  sort = NULL,
+  max_results = NULL,
+  start_index = NULL
 )
 }
 \arguments{
@@ -23,6 +26,12 @@ ryt_get_analytics(
 \item{dimensions}{Character vector of YouTube Analytics dimensions, such as video or ageGroup,gender. The \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} contains definitions for all of the dimensions.}
 
 \item{filters}{Character vector of filters that should be applied when retrieving YouTube Analytics data. The \href{https://developers.google.com/youtube/analytics/channel_reports}{documentation} for channel reports reports identifies the dimensions that can be used to filter each report, and the \href{https://developers.google.com/youtube/analytics/dimensions}{Dimensions document} defines those dimensions.}
+
+\item{sort}{Character vector of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The - prefix causes descending sort order.}
+
+\item{max_results}{The maximum number of rows to include in the response.}
+
+\item{start_index}{The 1-based index of the first entity to retrieve. (The default value is 1.) Use this parameter as a pagination mechanism along with the max_results parameter.}
 }
 \value{
 tibble with analytics data

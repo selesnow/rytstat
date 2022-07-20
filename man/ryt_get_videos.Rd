@@ -4,7 +4,10 @@
 \alias{ryt_get_videos}
 \title{Get list of your videos from 'YouTube'}
 \usage{
-ryt_get_videos()
+ryt_get_videos(fields = NULL)
+}
+\arguments{
+\item{fields}{Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.}
 }
 \value{
 tibble with video list

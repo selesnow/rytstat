@@ -1,9 +1,12 @@
 #' Get list of your videos from 'YouTube'
 #'
+#' @param fields Fields of video metadata, see \href{https://developers.google.com/youtube/v3/docs/videos/list}{API documentation}.
 #' @return tibble with video list
 #' @export
 #'
-ryt_get_videos <- function() {
+ryt_get_videos <- function(
+    fields = NULL
+  ) {
 
   cli_alert_info('Compose params')
 
@@ -11,6 +14,7 @@ ryt_get_videos <- function() {
           part       = "snippet",
           forMine    = TRUE,
           type       = 'video',
+          fields     = fields,
           maxResults = 50
   )
 

@@ -1,3 +1,22 @@
+# rytstat (development version)
+* В функцию `ryt_get_videos()` добавлен аргумент `fields`, позволяющий указать нужные поля.
+* В функцию `ryt_get_analytics()` добавлены следующие аргументы:
+    * `sort` - Сортировка данных в отчёте
+    * `max_results` - Ограничение на количество строк в отчёте
+    * `start_index` - Начальный индекс строки, с которой необходимо получить данные.
+
+Новые аргументы функции `ryt_get_analytics()` позволяют запрашивать топ видео за указанный период.
+```r
+# top video
+  top_10_by_view <- ryt_get_analytics(
+    '2022-06-01', '2022-06-30', 
+    metrics = 'views',
+    dimensions = 'video',
+    sort = '-views', 
+    max_results = 10
+  )
+```
+
 # rytstat 0.3.0
 
 ## Новая функция
