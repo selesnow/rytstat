@@ -48,17 +48,34 @@ ryt_get_videos <- function(
 
   cli_alert_info('Parse result')
   result <- tibble(items = result) %>%
-            unnest_longer(.data$items) %>%
-            unnest_wider(.data$items) %>%
-            unnest_wider(.data$id, names_sep = "_") %>%
-            unnest_wider(.data$snippet) %>%
-            unnest_wider(.data$thumbnails, names_sep = "_") %>%
-            unnest_wider(.data$thumbnails_default, names_sep = "_") %>%
-            unnest_wider(.data$thumbnails_medium, names_sep = "_") %>%
-            unnest_wider(.data$thumbnails_high, names_sep = "_") %>%
-            unnest_wider(.data$thumbnails_standard, names_sep = "_") %>%
-            unnest_wider(.data$thumbnails_maxres , names_sep = "_") %>%
-            rename_with(to_snake_case)
+    unnest_longer(.data$items) %>%
+    unnest_wider(.data$items)
+
+  nested_fields <- select(result, where(is.list)) %>% names()
+  nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
+
+  while ( length(nested_fields) > 0 ) {
+
+    for ( col in nested_fields ) {
+
+      if (col == "tags") next
+
+      result_t <- try(unnest_wider(result, any_of(col)), silent = T)
+
+      if ( 'try-error' %in% class(result_t) ) {
+        result <- unnest_wider(result, any_of(col), names_sep = '_')
+      } else {
+        result <- result_t
+      }
+
+    }
+
+    nested_fields <- select(result, where(is.list)) %>%
+      names()
+
+    nested_fields <- nested_fields[!nested_fields %in% c("tags", "topicDetails")]
+
+  }
 
   cli_alert_success(str_glue('Success, loading {nrow(result)} rows.'))
   return(result)
